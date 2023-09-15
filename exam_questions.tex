@@ -1,0 +1,130 @@
+\documentclass{report}
+
+\usepackage{color}
+\usepackage[margin=1in]{geometry}
+\usepackage{soul}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{enumerate}
+
+\newcommand{\secret}[1]{}
+% Folgende Zeile auskommentieren, wenn Antworten nicht gewünscht sind.
+\renewcommand{\secret}[1]{#1}
+
+\newcommand{\com}[2][blue]{\textcolor{#1}{#2}}
+\newcommand{\qst}[2][red]{\textcolor{#1}{#2}}
+\newcommand{\tab}{\hspace*{5mm}}
+\newcommand{\todo}[2][red]{\textcolor{#1}{TODO: #2}}
+
+\usepackage{contour}
+\usepackage{ulem}
+
+\renewcommand{\ULdepth}{1.5pt}
+\contourlength{0.8pt}
+
+\newcommand{\myuline}[1]{%
+	\uline{\phantom{#1}}%
+	\llap{\contour{white}{#1}}%
+}
+
+%opening
+\title{XAI: Explainable Artificial Intelligence}
+%\author{Diana Burkart}
+
+\begin{document}
+	
+	\maketitle
+	\newpage
+	
+	\tableofcontents
+	\newpage
+	
+	\chapter{Klausurfragen}
+	
+	\section{General}
+	
+	\begin{itemize}
+		\item Why do we need XAI?
+	\end{itemize}
+
+	\section{Intrinsic Interpretability}
+	
+	\begin{itemize}
+	\item 
+	\end{itemize}
+
+	\section{Model Types}
+	
+	\begin{itemize}
+	\item 
+	\end{itemize}
+
+	\section{Post-hoc Interpretability}
+	
+	\begin{itemize}
+	\item Please explain Permutation Features importance.
+	\item Please explain LIME.
+	\item Please explain Gloabl Surrogate.
+	
+	\item Please explain Shapley Values.
+	\item Please explain SHAP.
+	\end{itemize}
+	
+	\section{Prototype Learning}
+	
+	\begin{itemize}
+	\item What are Prototypes?
+	\item What is Prototype Learning?
+	\item What kinds of Prototype Learning exist?
+	\end{itemize}
+	
+	\section{SCG: Scene Graph Generation}
+	
+	\begin{itemize}
+	\item What is a Scene Graph?
+	\item What is meant by Pruning Edges?
+	\end{itemize}
+
+	\section{Guest Lectures}
+	
+		\subsection{XAI in Energy Systems}
+		
+		\begin{itemize}
+		\item 
+		\end{itemize}
+	
+		\subsection{XAI in Material Science}
+		
+		\begin{itemize}
+		\item 
+		\end{itemize}
+	
+		\subsection{XAI in Computer Security}
+		
+		\begin{itemize}
+		\item 
+		\end{itemize}
+	
+		\subsection{XAI in Mobility}
+		
+		\begin{itemize}
+		\item What is the MAB-EX framework?
+		\item What do the components of the MAB-EX framework do?
+		\item Why do we need explanations also for non-AI components?
+		\end{itemize}
+	
+		\subsection{XAI in NLP}
+		
+		\begin{itemize}
+		\item 
+		\end{itemize}
+	
+	\section{Neural Network Interpretation}
+	
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	
+	
+\end{document}
