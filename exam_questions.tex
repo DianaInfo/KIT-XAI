@@ -46,29 +46,181 @@
 	
 	\begin{itemize}
 		\item Why do we need XAI?
+		\newline It helps to understand and debug the behavior of learned models. also it answers the question WHY a model behaves the way it does.
+		\item What parts define a dataset?
+		\newline inputs, features, targets, datapoints
+		\item What are the 2 classes of interpretability?
+		\newline intrinsic interpretability \& post-hoc interpretability (mixture also possible)
 	\end{itemize}
 
 	\section{Intrinsic Interpretability}
 	
 	\begin{itemize}
-	\item 
+	\item What are the methods for intrinsic interpretability?
+	\newline Linear Regression, Logistic Regression, Generalized Linear Model (GLM) \& Generalized Additive Model (GAM)
+	
+	\item What is Linear Regression?
+	\newline 
+	\item What are methods to calculate Linear Regression?
+	\newline 
+	\item What is the interpretation of Linear Regression?
+	\newline 
+	\item What is the $R^2$ value and how is it defined?
+	\newline $R^2 = 1 - SSE/SST = 1 - (\sum_{i} (y_i - yhead_i))^2/(\sum_i (y_i - yavg_i))^2$
+	\item How can the t-statistic be used for interpretation of a NN?
+	\newline 
+	\item What are the assumptions regarding a NN interpretation for Linear Regression?
+	\newline Linearity (prediction linear in features), Normality (data is normally distributed), Homoscedasticity (error of prediction has const. variance), Independence (of datapoints), Fixed Features (no measurment error in features), Absence of multicollinearity
+	\item What are types of Regularization?
+	\newline Ridge Regression, LASSO Regression
+	\item Why do we need Regularization?
+	\newline 
+	\item What are the main advantages/ diadvantages of Linear Regression?
+	\newline 
+	
+	\item What are Generalized Linear Models?
+	\newline 
+	\item Which assumption is not valid for GLMs, but for Linear Regression?
+	\newline Normality
+	\item What is the Link function with GLMs?
+	\newline 
+	\item What are advantages/ disadvantages of GLMs?
+	\newline 
+	
+	\item What is Logistic Regression?
+	\newline 
+	\item What is the difference between Logistic and Linear Regression?
+	\newline 
+	\item What task does Logistic Regression solve?
+	\newline Classification (not Regression)
+	\item Why can't we regress directly on data? What is added to solve this issue?
+	\newline 
+	\item What are advantages/ disadvantages of Logistic Regression?
+	\newline 
+	\item What is the Perceptron?
+	\newline 
+	\item What is the formula to calculate the Perceptron?
+	\newline 
+	\item Why do we need an activation function?
+	\newline 
+	\item What kinds of activation functions exist?
+	\newline 
+	
+	\item What are Generalized Additive Models?
+	\newline 
+	\item What is the difference between GLMs and GAMs?
+	\newline 
+	\item How is the link function for GAMs defined? Does the link function need to be a smooth function?
+	\newline 
+	\item Does the link function have to be specified precisely?
+	\newline 
+	\item What happens if prediction is conditioned on only one single feature $x_k$?
+	\newline 
+	\item What is Backfitting?
+	\newline 
+	\item Can the Least Squares method still be used with GAMs?
+	\newline 
+	\item What are the advantages/ disadvantages of GAMs?
+	\newline 
+	
 	\end{itemize}
 
 	\section{Model Types}
 	
 	\begin{itemize}
-	\item 
+		\item What different model types exist?
+		\newline 
+		
+		\item What are Decision Trees?
+		\newline 
+		\item How do Decision Trees learn?
+		\newline 
+		\item How is the "best" boundary for Decision Trees chosen?
+		\newline 
+		\item How can the purity of nodes be mesasured?
+		\newline 
+		\item What are possible stopping conditions?
+		\newline e.g. max. depth, max instances per nodes
+		\item What is an alternative for stopping conditions?
+		\newline Pruning
+		\item What is Random Forest?
+		\newline 
+		\item What are the two methods used in Random Forest models?
+		\newline Bagging, Boosting
+		\item How can the feature importance for Random Forest be calculated?
+		\newline 
+		\item How can interaction of feature be represented by Random Forest models?
+		\newline 
+		\item What are the advantages/ disadvantages of Decision Trees?
+		\newline 
+		\item What is the difference between Random Forest and Decision Trees?
+		\newline 
+		\item What is meant by feature interaction?
+		\newline 
+		
+		\item What are the downsides of the algorithms before NNs?
+		\newline Expressiveness / Representation Power, scalability to higher dimensions, manual feature selection
+		\item What are the disadvantages of NNs?
+		\newline No intrinsic interpretability anymore
+		
+		\item What are GNNs?
+		\newline 
+		\item For which application are GNNs suitable?
+		\newline e.g. molecules, (social) networks, NLP, images
+		\item What are graph-related problems?
+		\newline Node classification, graph classification, link prediction, community detection, anomaly detection
+		\item What are the advantages of graph data?
+		\newline permutation invariant
+		\item What is Message Passing (MP)?
+		\newline 
+		\item What are the steps for MP?
+		\newline 
+		\item What are methods for GNNs?
+		\newline Graph Convolutional Network, Graph Attention Networks, Gated Graph Sequence Networks
+		
+		\item What are CNNs?
+		\newline 
+		\item What are the hyperparameters relevantto CNNs?
+		\newline 
+		\item What is Pooling? Why are we need Pooling?
+		\newline 
+		\item How many parameters do Pooling layers have?
+		\newline 
+		\item How many parameters do Convolution layers have?
+		\newline 
+		\item What parts are needed for the convolution stage?
+		\newline convolution, ReLU, Pooling
+		\item What are possible application areas of CNNs?
+		\newline image classification, object detection, image segmentation (deconvolutions)
+		
+		\item What are Transformer Networks?
+		\newline 
+		\item What are possible application areas of Transformer network?
+		\newline Computer Vision, NLP, Speech, Translation, Robotics, Image Classfication, Multimodal Generation, Text Generation
+		\item What was used before the introduction of Transformer for the input of sequences?
+		\newline RNNs (LSTM, GRU)
+		\item What are problems with the use of RNNs for sequential inputs?
+		\newline sequential processing, localization, single direction context
+		\item What is Attention?
+		\newline 
+		
 	\end{itemize}
 
 	\section{Post-hoc Interpretability}
 	
 	\begin{itemize}
 	\item Please explain Permutation Features importance.
+	\newline 
 	\item Please explain LIME.
+	\newline 
 	\item Please explain Gloabl Surrogate.
+	\newline 
 	
 	\item Please explain Shapley Values.
+	\newline 
 	\item Please explain SHAP.
+	\newline 
+	
 	\end{itemize}
 	
 	\section{Prototype Learning}
