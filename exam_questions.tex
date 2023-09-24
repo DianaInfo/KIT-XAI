@@ -7,10 +7,11 @@
 \usepackage{hyperref}
 \usepackage{amssymb}
 \usepackage{enumerate}
+\usepackage{xcolor}
 
-\newcommand{\secret}[1]{}
+\newcommand{\asw}[2][teal]{}
 % Folgende Zeile auskommentieren, wenn Antworten nicht gewünscht sind.
-\renewcommand{\secret}[1]{#1}
+\renewcommand{\asw}[2][teal]{\textcolor{#1}{#2}}
 
 \newcommand{\com}[2][blue]{\textcolor{#1}{#2}}
 \newcommand{\qst}[2][red]{\textcolor{#1}{#2}}
@@ -40,98 +41,105 @@
 	\tableofcontents
 	\newpage
 	
+	\chapter{Hints}
+	
+	\begin{itemize}
+		\item An "E:" in the beginning marks questions from the example exam questions of the lecture.
+	\end{itemize}
+	
 	\chapter{Klausurfragen}
 	
 	\section{General}
 	
 	\begin{itemize}
 		\item Why do we need XAI?
-		\newline It helps to understand and debug the behavior of learned models. also it answers the question WHY a model behaves the way it does.
+		\asw{\newline It helps to understand and debug the behavior of learned models. also it answers the question WHY a model behaves the way it does.}
 		\item What parts define a dataset?
-		\newline inputs, features, targets, datapoints
+		\asw{\newline inputs, features, targets, datapoints}
 		\item What are the 2 classes of interpretability?
-		\newline intrinsic interpretability \& post-hoc interpretability (mixture also possible)
+		\asw{\newline intrinsic interpretability \& post-hoc interpretability (mixture also possible)}
 		\item E: How does model complexity influence interpretability?
-		\newline With growing model complexity the interpretability of models decreases. This often is due to the many factors that are included in models with higher complexity.
+		\asw{\newline With growing model complexity the interpretability of models decreases. This often is due to the many factors that are included in models with higher complexity.}
 	\end{itemize}
 
 	\section{Intrinsic Interpretability}
 	
 	\begin{itemize}
 	\item What are the methods for intrinsic interpretability?
-	\newline Linear Regression, Logistic Regression, Generalized Linear Model (GLM) \& Generalized Additive Model (GAM)
+	\asw{\newline Linear Regression, Logistic Regression, Generalized Linear Model (GLM) \& Generalized Additive Model (GAM)}
 	
 	\item What is \textbf{\underline{Linear Regression}}?
-	\newline Linear Regression wants to predict a continuous value with a linear combination of features.
-	\newline $y = x^T \times \beta + \epsilon$
+	\asw{\newline Linear Regression wants to predict a continuous value with a linear combination of features.
+	\newline $y = x^T \beta + \epsilon$}
 	\item What does the $\epsilon$ in the Linear Regression equation express?
-	\newline It expresses the uncertainty / noise on $y$.
+	\asw{\newline It expresses the uncertainty / noise on $y$.}
 	\item What are methods to calculate Linear Regression?
-	\newline It can be calculated by OLS (Ordinary Least Squares) and TLS (Total Least Squares).
-	\newline OLS
+	\asw{\newline It can be calculated by OLS (Ordinary Least Squares) and TLS (Total Least Squares).
+	\newline OLS: $\hat{\beta} = argmin_\beta ||y - X \beta||^2_2$, $\hat{\beta} = (X^T X^{-1})^{-1} X^T y$
+	\newline TLS: includes uncertainty in features}
 	\item What is the interpretation of Linear Regression?
-	\newline 
+	\asw{\newline }
 	\item What is the $R^2$ value and how is it defined?
-	\newline $R^2 = 1 - \frac{SSE}{SST} = 1 - \frac{\sum_{i} (y_i - \hat{y}_i)^2}{\sum_i (y_i - \overline{y}_i)^2}$
+	\asw{\newline $R^2 = 1 - \frac{SSE}{SST} = 1 - \frac{\sum_{i} (y_i - \hat{y}_i)^2}{\sum_i (y_i - \overline{y}_i)^2}$}
 	\item E: How can the thresholds for the $R^2$ metric for a regression model be interpreted?
-	\newline 
+	\asw{\newline }
 	\item How can the t-statistic be used for interpretation of a NN?
-	\newline 
+	\asw{\newline }
 	\item What are the assumptions regarding a NN interpretation for Linear Regression?
-	\newline Linearity (prediction linear in features), Normality (data is normally distributed), Homoscedasticity (error of prediction has const. variance), Independence (of datapoints), Fixed Features (no measurment error in features), Absence of multicollinearity
+	\asw{\newline Linearity (prediction linear in features), Normality (data is normally distributed), Homoscedasticity (error of prediction has const. variance), Independence (of datapoints), Fixed Features (no measurment error in features), Absence of multicollinearity}
 	\item What are types of Regularization?
-	\newline Ridge Regression, LASSO Regression
+	\asw{\newline Ridge Regression, LASSO Regression}
 	\item Why do we need Regularization?
-	\newline 
+	\asw{\newline }
 	\item What are the main advantages/ diadvantages of Linear Regression?
-	\newline 
+	\asw{\newline }
 	\item E: Given a logistic regression model with trained weights $\beta$, how does the output $y$ change, if we change a single input feature $x'_m$ by one unit, i.e., $x'_m = x_m + 1$?
-	\newline $y' = $
+	\asw{\newline $y' = $}
 	
 	\item What are \textbf{\underline{Generalized Linear Models}}?
-	\newline 
+	\asw{\newline }
 	\item Which assumption is not valid for GLMs, but for Linear Regression?
-	\newline Normality
+	\asw{\newline Normality}
 	\item What is the Link function with GLMs?
-	\newline 
+	\asw{\newline }
 	\item What are advantages/ disadvantages of GLMs?
-	\newline 
+	\asw{\newline }
 	
 	\item What is \textbf{\underline{Logistic Regression}}?
-	\newline 
+	\asw{\newline }
 	\item What is the difference between Logistic and Linear Regression?
-	\newline 
+	\asw{\newline }
 	\item What task does Logistic Regression solve?
-	\newline Classification (not Regression)
+	\asw{\newline }Classification (not Regression)
 	\item Why can't we regress directly on data? What is added to solve this issue?
-	\newline 
+	\asw{\newline }
 	\item What are advantages/ disadvantages of Logistic Regression?
-	\newline 
+	\asw{\newline }
 	\item What is the Perceptron?
-	\newline 
+	\asw{\newline }
 	\item What is the formula to calculate the Perceptron?
-	\newline 
+	\asw{\newline }
 	\item Why do we need an activation function?
-	\newline 
+	\asw{\newline }
 	\item What kinds of activation functions exist?
-	\newline 
+	\asw{\newline }
 	
 	\item What are \textbf{\underline{Generalized Additive Models}}?
-	\newline 
+	\asw{\newline }
 	\item What is the difference between GLMs and GAMs?
-	\newline 
+	\asw{\newline }
 	\item How is the link function for GAMs defined? Does the link function need to be a smooth function?
-	\newline 
+	\asw{\newline }
 	\item Does the link function have to be specified precisely?
-	\newline 
+	\asw{\newline }
 	\item What happens if prediction is conditioned on only one single feature $x_k$?
-	\newline 
+	\asw{\newline }
 	\item What is Backfitting?
-	\newline 
+	\asw{\newline }
 	\item Can the Least Squares method still be used with GAMs?
-	\newline 
+	\asw{\newline }
 	\item E: What are the advantages/ disadvantages of GAMs?
-	\newline 
+	\asw{\newline }
 	
 	\end{itemize}
 
@@ -139,156 +147,156 @@
 	
 	\begin{itemize}
 		\item What different model types exist?
-		\newline 
+		\asw{\newline }
 		
 		\item What are \textbf{\underline{Decision Trees}}?
-		\newline 
+		\asw{\newline }
 		\item How do Decision Trees learn?
-		\newline 
+		\asw{\newline }
 		\item How is the "best" boundary for Decision Trees chosen?
-		\newline 
+		\asw{\newline }
 		\item How can the purity of nodes be mesasured?
-		\newline 
+		\asw{\newline }
 		\item E: What are possible stopping criteria for Decision Trees?
-		\newline e.g. max. depth, max instances per nodes
+		\asw{\newline e.g. max. depth, max instances per nodes}
 		\item What is an alternative for stopping conditions?
-		\newline Pruning
+		\asw{\newline Pruning}
 		\item What is Random Forest?
-		\newline 
+		\asw{\newline }
 		\item What are the two methods used in Random Forest models?
-		\newline Bagging, Boosting
+		\asw{\newline Bagging, Boosting}
 		\item How can the feature importance for Random Forest be calculated?
-		\newline 
+		\asw{\newline }
 		\item How can interaction of feature be represented by Random Forest models?
-		\newline 
+		\asw{\newline }
 		\item What are the advantages/ disadvantages of Decision Trees?
-		\newline 
+		\asw{\newline }
 		\item What is the difference between Random Forest and Decision Trees?
-		\newline 
+		\asw{\newline }
 		\item What is meant by feature interaction?
-		\newline 
+		\asw{\newline }
 		\item E: How can feature importance be computed for a decision tree?
-		\newline 
+		\asw{\newline }
 		
 		\item What are the downsides of the algorithms before NNs?
-		\newline Expressiveness / Representation Power, scalability to higher dimensions, manual feature selection
+		\asw{\newline Expressiveness / Representation Power, scalability to higher dimensions, manual feature selection}
 		\item What are the disadvantages of NNs?
-		\newline No intrinsic interpretability anymore
+		\asw{\newline No intrinsic interpretability anymore}
 		
 		\item What are \textbf{\underline{GNNs}}?
-		\newline 
+		\asw{\newline }
 		\item For which application are GNNs suitable?
-		\newline e.g. molecules, (social) networks, NLP, images
+		\asw{\newline e.g. molecules, (social) networks, NLP, images}
 		\item E: Name two examples for graph like structures and epxlain what the nodes and edges represent.
-		\newline 
+		\asw{\newline }
 		\item What are graph-related problems?
-		\newline Node classification, graph classification, link prediction, community detection, anomaly detection
+		\asw{\newline Node classification, graph classification, link prediction, community detection, anomaly detection}
 		\item What are the advantages of graph data?
-		\newline permutation invariant
+		\asw{\newline permutation invariant}
 		\item What is Message Passing (MP)?
-		\newline 
+		\asw{\newline }
 		\item What are the steps for MP?
-		\newline 
+		\asw{\newline }
 		\item E: For message passing, what kind of property is required for the learned aggregation function?
-		\newline 
+		\asw{\newline }
 		\item What are methods for GNNs?
-		\newline Graph Convolutional Network, Graph Attention Networks, Gated Graph Sequence Networks
+		\asw{\newline Graph Convolutional Network, Graph Attention Networks, Gated Graph Sequence Networks}
 		
 		\item What are \textbf{\underline{CNNs}}?
-		\newline 
+		\asw{\newline }
 		\item What are the hyperparameters relevant to CNNs?
-		\newline 
+		\asw{\newline }
 		\item What is Pooling? Why are we need Pooling?
-		\newline 
+		\asw{\newline }
 		\item How many parameters do Pooling layers have?
-		\newline 
+		\asw{\newline }
 		\item How many parameters do Convolution layers have?
-		\newline 
+		\asw{\newline }
 		\item In addition to Convolutional Layers, which two parts make up a typical convolution stage in a CNN? Name them and describe their function.
-		\newline 
+		\asw{\newline }
 		\item What parts are needed for the convolution stage?
-		\newline convolution, ReLU, Pooling
+		\asw{\newline convolution, ReLU, Pooling}
 		\item What are possible application areas of CNNs?
-		\newline image classification, object detection, image segmentation (deconvolutions)
+		\asw{\newline image classification, object detection, image segmentation (deconvolutions)}
 		
 		\item What are \textbf{\underline{Transformer}} Networks?
-		\newline 
+		\asw{\newline }
 		\item What are possible application areas of Transformer network?
-		\newline Computer Vision, NLP, Speech, Translation, Robotics, Image Classfication, Multimodal Generation, Text Generation
+		\asw{\newline Computer Vision, NLP, Speech, Translation, Robotics, Image Classfication, Multimodal Generation, Text Generation}
 		\item What was used before the introduction of Transformer for the input of sequences?
-		\newline RNNs (LSTM, GRU)
+		\asw{\newline RNNs (LSTM, GRU)}
 		\item What are problems with the use of RNNs for sequential inputs?
-		\newline sequential processing, localization, single direction context
+		\asw{\newline sequential processing, localization, single direction context}
 		\item What is Attention?
-		\newline 
+		\asw{\newline }
 		\item What is the intuition behind Transformers?
-		\newline Query, Key, Value
+		\asw{\newline Query, Key, Value}
 		\item How is the Attention computed?
-		\newline 1) compute attention score, normalize, softmax
+		\asw{\newline 1) compute attention score, normalize, softmax
 		\newline 2) sum attention score weighted by values
-		\newline $\rightarrow$ $z = softmax(\frac{Q \times K'}{\sqrt{d_{key}}}) \times V$
+		\newline $\rightarrow$ $z = softmax(\frac{Q \times K'}{\sqrt{d_{key}}}) \times V$}
 		\item What part of the Tranformer architecture is used for what?
-		\newline only decoder $\rightarrow$
+		\asw{\newline only decoder $\rightarrow$
 		\newline only encoder $\rightarrow$
-		\newline both $\rightarrow$
+		\newline both $\rightarrow$}
 		\item How is the input of the Transformer handled beforehand?
-		\newline tokenization of inputs, positional encoding (permutation invariance, sequence processing)
+		\asw{\newline tokenization of inputs, positional encoding (permutation invariance, sequence processing)}
 		\item How does the positional encoding of the Transformer input work?
-		\newline 
+		\asw{\newline }
 		\item How does the tokenization of the Transformer input work?
-		\newline 
+		\asw{\newline }
 		\item What types of modalities can be input to an Transformer model?
-		\newline 
+		\asw{\newline }
 		\item What is the MHSA?
-		\newline Multi-headed Self-Attention: Conceptualized Embeddings, Self-Attention, Multiple Attention Heads, Weighting with Linear Layers
+		\asw{\newline Multi-headed Self-Attention: Conceptualized Embeddings, Self-Attention, Multiple Attention Heads, Weighting with Linear Layers}
 		\item What is the Tokenwise-MLP?
-		\newline 
+		\asw{\newline }
 		\item What are Residual Updates and why do we need them?
-		\newline 
+		\asw{\newline }
 		\item What is Layer Normalization and why do we need it?
-		\newline 
+		\asw{\newline }
 		\item How many of the layers are stacked on top of each other in the Transformer network?
-		\newline commonly 6 or 12
+		\asw{\newline commonly 6 or 12}
 		\item How is the output layer of the Transformer network defined?
-		\newline 
+		\asw{\newline }
 		\item Do the inputs for the Transformer network need padding? Is the input length for the Transformer network fixed?
-		\newline 
+		\asw{\newline }
 		\item What different types of Attention are used in the Transformer network and how do they work? In which part of the network are they used?
-		\newline Self-Attention, Cross-Attention, Masked-Attention
+		\asw{\newline Self-Attention, Cross-Attention, Masked-Attention}
 		\item What properties do Transformer networks have?
-		\newline expressive, optimizable, efficient
+		\asw{\newline expressive, optimizable, efficient}
 		\item E: Name two weakness of Recurrent Neural Networks (RNNs), which are addressed by the Transformer Architecture.
-		\newline 
+		\asw{\newline }
 		\item E: What three matrices are required for computing attention? On a high level, what is their purpose?
-		\newline 
+		\asw{\newline }
 		\item What is special about the latent space learned by the CLIP foundation model?
-		\newline 
+		\asw{\newline }
 		
 		\item What is \textbf{\underline{CLIP}}?
-		\newline Contrastive Language-Image Pre-Training
+		\asw{\newline Contrastive Language-Image Pre-Training}
 		\item What is CLIP used for?
-		\newline pretraining image and text encoders
+		\asw{\newline pretraining image and text encoders}
 		\item What types of data does CLIP receive?
-		\newline 
+		\asw{\newline }
 		\item What are the parts of a CLIP network? What types of networks are often used for them?
-		\newline 
+		\asw{\newline }
 		\item How can the different modalities be mapped to check for similarities?
-		\newline 
+		\asw{\newline }
 		\item What is the distance in the latent space equal to?
-		\newline 
+		\asw{\newline }
 		\item What is Self-Supervised Training?
-		\newline 
+		\asw{\newline }
 		\item What are the steps for Self-Supervised Training in CLIP?
-		\newline 
+		\asw{\newline }
 		\item What are possible applications of CLIP?
-		\newline 
+		\asw{\newline }
 		\item How can CLIP models be explained?
-		\newline 
+		\asw{\newline }
 		
 		\item E: What is a \textbf{\underline{Diffusion}} networks?
-		\newline 
+		\asw{\newline }
 		\item E: What are the two motivations for the research question of ”Uncovering the hidden language of Diffusion models”?
-		\newline 
+		\asw{\newline }
 		
 	\end{itemize}
 
@@ -296,25 +304,25 @@
 	
 	\begin{itemize}
 	\item E: Name one local and one global interpretation method and explain what makes the local/global.
-	\newline 
+	\asw{\newline }
 	
 	\item Please explain \textbf{\underline{Permutation Features importance}}.
-	\newline 
+	\asw{\newline }
 	\item Please explain LIME.
-	\newline 
+	\asw{\newline }
 	\item E: What are advantages and disadvantages of LIME.
-	\newline 
+	\asw{\newline }
 	\item Please explain Gloabl Surrogate.
-	\newline 
+	\asw{\newline }
 	\item E: Briefly explain how to create a Global Surrogate.
-	\newline 
+	\asw{\newline }
 	
 	\item Please explain \textbf{\underline{Shapley Values}}.
-	\newline 
+	\asw{\newline }
 	\item E: Briefly explain, what interpretation do Shapley Values provide. What ”question” do they answer?
-	\newline 
+	\asw{\newline }
 	\item Please explain SHAP.
-	\newline 
+	\asw{\newline }
 	
 	\end{itemize}
 	
@@ -322,26 +330,26 @@
 	
 	\begin{itemize}
 	\item What are \textbf{\underline{Prototypes}}?
-	\newline 
+	\asw{\newline }
 	\item What is Prototype Learning?
-	\newline 
+	\asw{\newline }
 	\item What kinds of Prototype Learning exist?
-	\newline 
+	\asw{\newline }
 	\item What is the definition of a Prototype with respect to interpretable machine learning models, e.g. for computer vision?
-	\newline 
+	\asw{\newline }
 	\item How are prototypes related to Bag of (visual) words?
-	\newline 
+	\asw{\newline }
 	\item Describe a network architecture for non-learnable Prototypes.
-	\newline 
+	\asw{\newline }
 	\end{itemize}
 	
 	\section{SCG: Scene Graph Generation}
 	
 	\begin{itemize}
 	\item What is a \textbf{\underline{Scene Graph}}?
-	\newline 
+	\asw{\newline }
 	\item What is meant by Pruning Edges?
-	\newline 
+	\asw{\newline }
 	\end{itemize}
 
 	\section{Guest Lectures (Applied XAI)}
@@ -350,7 +358,7 @@
 		
 		\begin{itemize}
 		\item E: What XAI technique is currently predominantly used for Energy Systems?
-		\newline 
+		\asw{\newline }
 		\end{itemize}
 	
 		\subsection{XAI in Material Science}
@@ -363,9 +371,9 @@
 		
 		\begin{itemize}
 		\item E: Name three types of explanation aware attacks
-		\newline 
+		\asw{\newline }
 		\item E: How can we protect a model against explanation aware attacks using trigger patches?
-		\newline 
+		\asw{\newline }
 		\end{itemize}
 	
 		\subsection{XAI in Mobility}
@@ -380,18 +388,18 @@
 		
 		\begin{itemize}
 		\item E: Briefly Describe the two main steps of Pertubation-based Quality Estimation in NLP.
-		\newline 
+		\asw{\newline }
 		\end{itemize}
 	
 	\section{Neural Network Interpretation}
 	
 	\begin{itemize}
 		\item E: Briefly describe the three main steps of Network Dissecton.
-		\newline 
+		\asw{\newline }
 		\item E: Which part of a Convolution Stage in a CNN might cause problems for saliency maps and why?
-		\newline 
+		\asw{\newline }
 		\item E: Name one advantage and one disadvantage for Saliency Maps.
-		\newline 
+		\asw{\newline }
 	\end{itemize}
 	
 	
