@@ -51,6 +51,8 @@
 		\newline inputs, features, targets, datapoints
 		\item What are the 2 classes of interpretability?
 		\newline intrinsic interpretability \& post-hoc interpretability (mixture also possible)
+		\item E: How does model complexity influence interpretability?
+		\newline With growing model complexity the interpretability of models decreases. This often is due to the many factors that are included in models with higher complexity.
 	\end{itemize}
 
 	\section{Intrinsic Interpretability}
@@ -59,14 +61,20 @@
 	\item What are the methods for intrinsic interpretability?
 	\newline Linear Regression, Logistic Regression, Generalized Linear Model (GLM) \& Generalized Additive Model (GAM)
 	
-	\item What is Linear Regression?
-	\newline 
+	\item What is \textbf{\underline{Linear Regression}}?
+	\newline Linear Regression wants to predict a continuous value with a linear combination of features.
+	\newline $y = x^T \times \beta + \epsilon$
+	\item What does the $\epsilon$ in the Linear Regression equation express?
+	\newline It expresses the uncertainty / noise on $y$.
 	\item What are methods to calculate Linear Regression?
-	\newline 
+	\newline It can be calculated by OLS (Ordinary Least Squares) and TLS (Total Least Squares).
+	\newline OLS
 	\item What is the interpretation of Linear Regression?
 	\newline 
 	\item What is the $R^2$ value and how is it defined?
-	\newline $R^2 = 1 - SSE/SST = 1 - (\sum_{i} (y_i - yhead_i))^2/(\sum_i (y_i - yavg_i))^2$
+	\newline $R^2 = 1 - \frac{SSE}{SST} = 1 - \frac{\sum_{i} (y_i - \hat{y}_i)^2}{\sum_i (y_i - \overline{y}_i)^2}$
+	\item E: How can the thresholds for the $R^2$ metric for a regression model be interpreted?
+	\newline 
 	\item How can the t-statistic be used for interpretation of a NN?
 	\newline 
 	\item What are the assumptions regarding a NN interpretation for Linear Regression?
@@ -77,8 +85,10 @@
 	\newline 
 	\item What are the main advantages/ diadvantages of Linear Regression?
 	\newline 
+	\item E: Given a logistic regression model with trained weights $\beta$, how does the output $y$ change, if we change a single input feature $x'_m$ by one unit, i.e., $x'_m = x_m + 1$?
+	\newline $y' = $
 	
-	\item What are Generalized Linear Models?
+	\item What are \textbf{\underline{Generalized Linear Models}}?
 	\newline 
 	\item Which assumption is not valid for GLMs, but for Linear Regression?
 	\newline Normality
@@ -87,7 +97,7 @@
 	\item What are advantages/ disadvantages of GLMs?
 	\newline 
 	
-	\item What is Logistic Regression?
+	\item What is \textbf{\underline{Logistic Regression}}?
 	\newline 
 	\item What is the difference between Logistic and Linear Regression?
 	\newline 
@@ -106,7 +116,7 @@
 	\item What kinds of activation functions exist?
 	\newline 
 	
-	\item What are Generalized Additive Models?
+	\item What are \textbf{\underline{Generalized Additive Models}}?
 	\newline 
 	\item What is the difference between GLMs and GAMs?
 	\newline 
@@ -120,7 +130,7 @@
 	\newline 
 	\item Can the Least Squares method still be used with GAMs?
 	\newline 
-	\item What are the advantages/ disadvantages of GAMs?
+	\item E: What are the advantages/ disadvantages of GAMs?
 	\newline 
 	
 	\end{itemize}
@@ -131,7 +141,7 @@
 		\item What different model types exist?
 		\newline 
 		
-		\item What are Decision Trees?
+		\item What are \textbf{\underline{Decision Trees}}?
 		\newline 
 		\item How do Decision Trees learn?
 		\newline 
@@ -139,7 +149,7 @@
 		\newline 
 		\item How can the purity of nodes be mesasured?
 		\newline 
-		\item What are possible stopping conditions?
+		\item E: What are possible stopping criteria for Decision Trees?
 		\newline e.g. max. depth, max instances per nodes
 		\item What is an alternative for stopping conditions?
 		\newline Pruning
@@ -157,16 +167,20 @@
 		\newline 
 		\item What is meant by feature interaction?
 		\newline 
+		\item E: How can feature importance be computed for a decision tree?
+		\newline 
 		
 		\item What are the downsides of the algorithms before NNs?
 		\newline Expressiveness / Representation Power, scalability to higher dimensions, manual feature selection
 		\item What are the disadvantages of NNs?
 		\newline No intrinsic interpretability anymore
 		
-		\item What are GNNs?
+		\item What are \textbf{\underline{GNNs}}?
 		\newline 
 		\item For which application are GNNs suitable?
 		\newline e.g. molecules, (social) networks, NLP, images
+		\item E: Name two examples for graph like structures and epxlain what the nodes and edges represent.
+		\newline 
 		\item What are graph-related problems?
 		\newline Node classification, graph classification, link prediction, community detection, anomaly detection
 		\item What are the advantages of graph data?
@@ -175,12 +189,14 @@
 		\newline 
 		\item What are the steps for MP?
 		\newline 
+		\item E: For message passing, what kind of property is required for the learned aggregation function?
+		\newline 
 		\item What are methods for GNNs?
 		\newline Graph Convolutional Network, Graph Attention Networks, Gated Graph Sequence Networks
 		
-		\item What are CNNs?
+		\item What are \textbf{\underline{CNNs}}?
 		\newline 
-		\item What are the hyperparameters relevantto CNNs?
+		\item What are the hyperparameters relevant to CNNs?
 		\newline 
 		\item What is Pooling? Why are we need Pooling?
 		\newline 
@@ -188,12 +204,14 @@
 		\newline 
 		\item How many parameters do Convolution layers have?
 		\newline 
+		\item In addition to Convolutional Layers, which two parts make up a typical convolution stage in a CNN? Name them and describe their function.
+		\newline 
 		\item What parts are needed for the convolution stage?
 		\newline convolution, ReLU, Pooling
 		\item What are possible application areas of CNNs?
 		\newline image classification, object detection, image segmentation (deconvolutions)
 		
-		\item What are Transformer Networks?
+		\item What are \textbf{\underline{Transformer}} Networks?
 		\newline 
 		\item What are possible application areas of Transformer network?
 		\newline Computer Vision, NLP, Speech, Translation, Robotics, Image Classfication, Multimodal Generation, Text Generation
@@ -203,20 +221,97 @@
 		\newline sequential processing, localization, single direction context
 		\item What is Attention?
 		\newline 
+		\item What is the intuition behind Transformers?
+		\newline Query, Key, Value
+		\item How is the Attention computed?
+		\newline 1) compute attention score, normalize, softmax
+		\newline 2) sum attention score weighted by values
+		\newline $\rightarrow$ $z = softmax(\frac{Q \times K'}{\sqrt{d_{key}}}) \times V$
+		\item What part of the Tranformer architecture is used for what?
+		\newline only decoder $\rightarrow$
+		\newline only encoder $\rightarrow$
+		\newline both $\rightarrow$
+		\item How is the input of the Transformer handled beforehand?
+		\newline tokenization of inputs, positional encoding (permutation invariance, sequence processing)
+		\item How does the positional encoding of the Transformer input work?
+		\newline 
+		\item How does the tokenization of the Transformer input work?
+		\newline 
+		\item What types of modalities can be input to an Transformer model?
+		\newline 
+		\item What is the MHSA?
+		\newline Multi-headed Self-Attention: Conceptualized Embeddings, Self-Attention, Multiple Attention Heads, Weighting with Linear Layers
+		\item What is the Tokenwise-MLP?
+		\newline 
+		\item What are Residual Updates and why do we need them?
+		\newline 
+		\item What is Layer Normalization and why do we need it?
+		\newline 
+		\item How many of the layers are stacked on top of each other in the Transformer network?
+		\newline commonly 6 or 12
+		\item How is the output layer of the Transformer network defined?
+		\newline 
+		\item Do the inputs for the Transformer network need padding? Is the input length for the Transformer network fixed?
+		\newline 
+		\item What different types of Attention are used in the Transformer network and how do they work? In which part of the network are they used?
+		\newline Self-Attention, Cross-Attention, Masked-Attention
+		\item What properties do Transformer networks have?
+		\newline expressive, optimizable, efficient
+		\item E: Name two weakness of Recurrent Neural Networks (RNNs), which are addressed by the Transformer Architecture.
+		\newline 
+		\item E: What three matrices are required for computing attention? On a high level, what is their purpose?
+		\newline 
+		\item What is special about the latent space learned by the CLIP foundation model?
+		\newline 
+		
+		\item What is \textbf{\underline{CLIP}}?
+		\newline Contrastive Language-Image Pre-Training
+		\item What is CLIP used for?
+		\newline pretraining image and text encoders
+		\item What types of data does CLIP receive?
+		\newline 
+		\item What are the parts of a CLIP network? What types of networks are often used for them?
+		\newline 
+		\item How can the different modalities be mapped to check for similarities?
+		\newline 
+		\item What is the distance in the latent space equal to?
+		\newline 
+		\item What is Self-Supervised Training?
+		\newline 
+		\item What are the steps for Self-Supervised Training in CLIP?
+		\newline 
+		\item What are possible applications of CLIP?
+		\newline 
+		\item How can CLIP models be explained?
+		\newline 
+		
+		\item E: What is a \textbf{\underline{Diffusion}} networks?
+		\newline 
+		\item E: What are the two motivations for the research question of ”Uncovering the hidden language of Diffusion models”?
+		\newline 
 		
 	\end{itemize}
 
 	\section{Post-hoc Interpretability}
 	
 	\begin{itemize}
-	\item Please explain Permutation Features importance.
+	\item E: Name one local and one global interpretation method and explain what makes the local/global.
+	\newline 
+	
+	\item Please explain \textbf{\underline{Permutation Features importance}}.
 	\newline 
 	\item Please explain LIME.
 	\newline 
+	\item E: What are advantages and disadvantages of LIME.
+	\newline 
 	\item Please explain Gloabl Surrogate.
 	\newline 
+	\item E: Briefly explain how to create a Global Surrogate.
+	\newline 
 	
-	\item Please explain Shapley Values.
+	\item Please explain \textbf{\underline{Shapley Values}}.
+	\newline 
+	\item E: Briefly explain, what interpretation do Shapley Values provide. What ”question” do they answer?
 	\newline 
 	\item Please explain SHAP.
 	\newline 
@@ -226,24 +321,36 @@
 	\section{Prototype Learning}
 	
 	\begin{itemize}
-	\item What are Prototypes?
+	\item What are \textbf{\underline{Prototypes}}?
+	\newline 
 	\item What is Prototype Learning?
+	\newline 
 	\item What kinds of Prototype Learning exist?
+	\newline 
+	\item What is the definition of a Prototype with respect to interpretable machine learning models, e.g. for computer vision?
+	\newline 
+	\item How are prototypes related to Bag of (visual) words?
+	\newline 
+	\item Describe a network architecture for non-learnable Prototypes.
+	\newline 
 	\end{itemize}
 	
 	\section{SCG: Scene Graph Generation}
 	
 	\begin{itemize}
-	\item What is a Scene Graph?
+	\item What is a \textbf{\underline{Scene Graph}}?
+	\newline 
 	\item What is meant by Pruning Edges?
+	\newline 
 	\end{itemize}
 
-	\section{Guest Lectures}
+	\section{Guest Lectures (Applied XAI)}
 	
 		\subsection{XAI in Energy Systems}
 		
 		\begin{itemize}
-		\item 
+		\item E: What XAI technique is currently predominantly used for Energy Systems?
+		\newline 
 		\end{itemize}
 	
 		\subsection{XAI in Material Science}
@@ -255,7 +362,10 @@
 		\subsection{XAI in Computer Security}
 		
 		\begin{itemize}
-		\item 
+		\item E: Name three types of explanation aware attacks
+		\newline 
+		\item E: How can we protect a model against explanation aware attacks using trigger patches?
+		\newline 
 		\end{itemize}
 	
 		\subsection{XAI in Mobility}
@@ -269,13 +379,19 @@
 		\subsection{XAI in NLP}
 		
 		\begin{itemize}
-		\item 
+		\item E: Briefly Describe the two main steps of Pertubation-based Quality Estimation in NLP.
+		\newline 
 		\end{itemize}
 	
 	\section{Neural Network Interpretation}
 	
 	\begin{itemize}
-		\item 
+		\item E: Briefly describe the three main steps of Network Dissecton.
+		\newline 
+		\item E: Which part of a Convolution Stage in a CNN might cause problems for saliency maps and why?
+		\newline 
+		\item E: Name one advantage and one disadvantage for Saliency Maps.
+		\newline 
 	\end{itemize}
 	
 	
