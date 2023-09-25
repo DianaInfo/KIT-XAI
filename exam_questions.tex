@@ -45,6 +45,7 @@
 	
 	\begin{itemize}
 		\item An "E:" in the beginning marks questions from the example exam questions of the lecture.
+		\item No formulars in exams, only general understanding of content
 	\end{itemize}
 	
 	\chapter{Klausurfragen}
@@ -371,12 +372,24 @@
 		\hrule 
 		
 		\item E: What is a \textbf{\underline{Diffusion}} networks?
-		\asw{\newline \qst{Add questions and answers about Diffusion models}}
-		\item E: What are the two motivations for the research question of ”Uncovering the hidden language of Diffusion models”?
-		\asw{\newline }
+		\asw{\newline Diffusion networks are generative models that take noise as input and gradually create images from them through optimization.}
 		\item What are Score-based Diffusion Generative Models?
+		\asw{\newline They iteratively generate new samples through a denoising process beginning with random Gaussian noise. They try to fit underlying data distribution and synthesize new samples from this distribution.}
+		\item What is the score of Score-based Diffusion Generative Models referring to?
+		\asw{\newline The model tries to learn a score for the PDF of the underlying data distribution.}
+		\item What is a needed property for the normalization constant $Z$?
+		\asw{\newline $Z$ needs to be tractable. That is not easy.}
+		\item How does sampling from a score-based Diffusion model work?
+		\asw{\newline New samples are generated using iterative Langevin Dynamics procedure.}
+		\item What is the Fisher Divergence Training Objective?
 		\asw{\newline }
+		\item What issues occure with sampling?
+		\asw{\newline Samples can get stuck, because the noise can start in a low density region and does not know the direction, because there is no good estimate of the score in this area.}
 		\item What are Noise-conditioned Score Networks?
+		\asw{\newline }
+		\item What is the weighted Fisher Divergence Training objective?
+		\asw{\newline }
+		\item What are the advantages of perturbing data with an SDE?
 		\asw{\newline }
 		\item How is the Forward Diffusion SDE defined?
 		\asw{\newline }
@@ -385,13 +398,23 @@
 		\item What are the advantages / disadvantages of Probability flow ODEs?
 		\asw{\newline }
 		\item What are Latent / Stable Diffusion models?
-		\asw{\newline }
+		\asw{\newline They can synthesize high-resolution images. They use diffusion in latent space for significant speed-up in Sampling and Learning. They use a pre-trained encoder/decoder. They use flexible conditioning with Cross-Attention and condition the generation process on various inputs (not same inputs)}
 		\item What is meant with the Hidden Language of Diffusion models?
+		\asw{\newline }
+		\item What is the algorithm of the conceptor for the Hidden Language of Diffusion models?
+		\asw{\newline (1): Extract a training set of 100 images from the model with the concept prompt
+			\newline (2): MLP maps each word embedding wi to a coefficient f(wi)
+			\newline (3): we compute the learned pseudo-token w*N as a linear combination of the vocabulary tokens
+			\newline (4): We sample a random noise for each of the training images and noise the images accordingly
+			\newline (5): We use the model to denoise the image with our pseudo-token w*N
+			\newline (6): Compute 2 losses: reconstruction and sparsity loss
+			\newline (7) In inference time, we only consider the top-50 tokens rated by their coefficients to reconstruct the concept images.}
+		\item E: What are the two motivations for the research question of ”Uncovering the hidden language of Diffusion models”?
 		\asw{\newline }
 		\item How can the Hidden Language of Diffusion models be extracted?
 		\asw{\newline }
 		\item What are the key takeaways for the Hidden Language of Diffusion models?
-		\asw{\newline Conceptor, Diffusion models, Homograph concepts, Bias detection}
+		\asw{\newline Conceptor, Diffusion models, Homograph concepts (homograph: one word, multiple meanings), Bias detection}
 		\item Why are there potential Privacy issues with Diffusion Generative models?
 		\asw{\newline }
 		\item How is it possible to extract training images from Diffusion models?
@@ -642,42 +665,132 @@
 		\subsection{XAI in Energy Systems}
 		
 		\begin{itemize}
+		\item Why are energy systems so complex?
+		\asw{\newline interconnected systems, distributed and volatile generation, balancing demand and supply, complex and requires transparency}
+		\item Why do we need XAI for energy systems?
+		\asw{\newline Operators need to understand and trust. Consumers need to adopt and comply.}
 		\item E: What XAI technique is currently predominantly used for Energy Systems?
 		\asw{\newline }
+		\item What influences the Frequency Stability?
+		\asw{\newline The balance of supply and demand.}
+		\item What are application for XAI in energy?
+		\asw{\newline vulverability of power grid, renewable energy forecasting, building energy management}
+		\item What are methods used for interpretability?
+		\asw{\newline SHAP, LIME, GradCAM, Attention}
+		\item What are current research topic in XAI for energy systems?
+		\asw{\newline predict stability of power grid based on external features (generation, load, prices, ...), 
+			\newline identify drivers and risks of stability, determine depencies, interactions
+			\newline feature ranking, partial depency plots
+			\newline identify technology as fast/slow dependent on context}
+		\item What are the keytake aways for energy systems?
+		\asw{\newline power grids are complex and frequency plays a special role, interpretable ML reveals interaction in world, XAI in energy allows forcasting and insights for a sustainable future}
 		\end{itemize}
 		\hrule 
 	
 		\subsection{XAI in Material Science}
 		
 		\begin{itemize}
-		\item 
+		\item What is the difference between knowledge and understanding?
+		\asw{\newline }
+		\item What is Scientific understanding?
+		\asw{\newline }
+		\item What are the criteria for Scientific understanding?
+		\asw{\newline Understanding phenomena, intelligibility of theories}
+		\item What are Aspects of Scientific understanding?
+		\asw{\newline Computational Microscope (reveals properties), Resource of inspiration (new concepts/ideas), Agent of understanding (no evidence yet)}
+		\item What are conditions for Scientific understanding?
+		\asw{\newline 1) can recognize qualitative characteristic consequences of a theory without performing exact computations and use them in a new context
+			\newline 2) can transfer its understanding to a human expert}
+		\item What is the Scientific Understanding Test?
+		\asw{\newline It's similar to the Turing Test for understanding. Student learns from teacher, teacher explains theory. Referee tests teacher and student on task independently, if undistinguishable $\rightarrow$ teacher has scientific understanding}
+		
+		\item Why do we need data-driven molecule search?
+		\asw{\newline exploit and avoid redundancies for speedup and discovery, uncover hidden relations in data for understanding and design}
+		\item What is a Self-explaining GNN?
+		\asw{\newline It can generate explanations by itself and learn from prior knowledge. There is an "accuracy-explainability tradeoff".}
+		\item What type of network is MEGAN?
+		\asw{\newline It is a Self-explaining GNN. It is short for Multi-Explanation Graph Attention Network.}
+		\item What is the output of MEGAN?
+		\asw{\newline The output is the prediction, a node explanation mask and a edge explanation mask.}
+		\item What are possible applications for MEGAN?
+		\asw{\newline re-discovery of solubility}
+		\item What can clustering be used for with GNNs?
+		\asw{\newline UMAP, cluster center as generic example explanations}
+		\item What are counterfactuals?
+		\asw{\newline They look similar than another example, but they have very different properties.}
 		\end{itemize}
 		\hrule 
 	
 		\subsection{XAI in Computer Security}
 		
 		\begin{itemize}
+		\item What types of problems are viewed in XAI for computer security?
+		\asw{\newline MLSEC: Developing more intelligent security systems (Automation of Attacks/ security)
+			\newline SECML: Developing more secure intelligent systems (Attacks against ML, robust ML)}
+		\item What are applications of XAI in Computer Security?
+		\asw{\newline Detection of malware, software/hardware vulnerabilities, etc.
+			\newline Vetting malware behavior: describe what malware does}
+		\item How does malware vetting work?
+		\asw{\newline derive concise but contextualized explanation of malware
+			\newline 1) learn model for groups of malware
+			\newline 2) explain using "layer-wise relevance propagation"
+			\newline 3) aggreate}
+		\item How can the quality of explanations be evaluated?
+		\asw{\newline Let users evaluate (extremely difficult), measure using criteria}
+		\item What criteria is used for the quality of explanations?
+		\asw{\newline General: Descriptive accuracy (accuracy drop, when most relevant features are removed), descriptive sparsity (normalized histogram of relevance $\rightarrow$ sharper $\widehat{=}$ better)
+			\newline Security-related: Completeness (derived for all corner cases), stability (do not vary over time), efficiency (runtime performance), robustness (reliable in adversarial settings)}
+		\item What is the difference between White-box explanations and Black-box explanations?
+		\asw{\newline }
+		\item What are different threat models for attacks against ML?
+		\asw{\newline Attack against training (model manipulation), attack against prediction (input manipulation)}
 		\item E: Name three types of explanation aware attacks
-		\asw{\newline }
+		\asw{\newline Classification preserving, Explanation preserving, Dual Attack}
 		\item E: How can we protect a model against explanation aware attacks using trigger patches?
-		\asw{\newline }
+		\asw{\newline We can use Februus or SentiNet to identify and remove trigger patterns. When trigger patterns are identified they can be removed and the image can be inpainted with GANs.}
 		\end{itemize}
 		\hrule 
 	
 		\subsection{XAI in Mobility}
 		
 		\begin{itemize}
-		\item What is the MAB-EX framework?
-		\item What do the components of the MAB-EX framework do?
-		\item Why do we need explanations also for non-AI components?
+		\item What are challenges when explaining AI components?
+		\asw{\newline complex models, explanation recipients, holistic explanations for entire system necessary}
+		\item E: What are challenges when explaining non-AI components?
+		\asw{\newline large number of components, complexity / size of components, different modelling mechanisms of components, (parts of) component's behavior might be hidden (secret)}
+		\item What is Self-Explainability?
+		\asw{\newline System must be able to explain its own behavior without any outside entity.}
+		\item What are the requirements for Self-Explainability?
+		\asw{\newline provided spontaneously, during runtime, automatically updated}
+		\item E: What is the MAB-EX framework?
+		\asw{\newline It is a framework for Self-Explainability. It consists of Monitoring, Analyses, Build explanations, Explain.}
+		\item E: What do the components of the MAB-EX framework do?
+		\asw{\newline Monitoring: monitor system and environment
+			\newline Analyses: analyze monitored data
+			\newline Build explanation: retrieve explanation as internal format from explanation model (e.g. Self-Explainable Digital Twins)
+			\newline Explain: Transform internal explnation into adequate form, depends on recipient, timing (a priori, in situ, a posteriori), topic}
+		\item What is an application for XAI in mobility?
+		\asw{\newline Moral Traffic Agents, introduc "common sense" in Autonomous Vehicles}
+		\item Why do we need explanations for Moral Traffic Agents?
+		\asw{\newline grey scale of unsolvable conflicts $\rightarrow$ let experts decide
+			\newline classify potential conflicts, develop solution strategies for each class of conflicts}
 		\end{itemize}
 		\hrule 
 	
 		\subsection{XAI in NLP}
 		
 		\begin{itemize}
+		\item What type of models and explanations are used for Machine Translation?
+		\asw{\newline Transformer networks with Attention as explanation}
+		\item How can attention-based models be interpreted?
+		\asw{\newline gradient-based methods, using attention-score (problem: multiple attention blocks), using token contribution, contrastive explanations (motivation: non-contrastive have most attention on immediately preceeding token)}
+		\item What are the goals of Perturbation-based Quality Estimation?
+		\asw{\newline main goal: Quality Estimation, side goal: explainability}
+		\item What are the properties of Perturbation-based Quality Estimation?
+		\asw{\newline model-agnostic, works for black-box MT systems}
 		\item E: Briefly Describe the two main steps of Pertubation-based Quality Estimation in NLP.
-		\asw{\newline }
+		\asw{\newline 1) Perturb each word $x_i$ in source sentence
+			\newline 2) if output word $y_j$ changes as we perturb $x_i$ $\Rightarrow$ $x_i$ influences $y_j$}
 		\end{itemize}
 	\newpage
 	
