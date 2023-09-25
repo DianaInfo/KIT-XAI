@@ -31,7 +31,7 @@
 
 %opening
 \title{XAI: Explainable Artificial Intelligence}
-%\author{Diana Burkart}
+\author{Diana Burkart}
 
 \begin{document}
 	
@@ -78,68 +78,107 @@
 	\newline OLS: $\hat{\beta} = argmin_\beta ||y - X \beta||^2_2$, $\hat{\beta} = (X^T X^{-1})^{-1} X^T y$
 	\newline TLS: includes uncertainty in features}
 	\item What is the interpretation of Linear Regression?
-	\asw{\newline }
+	\asw{\newline Changing a single feature $x_m$ by $\Delta x_m$ will directly effect outcome $y$ by $\beta_m \Delta x_m$
+		\newline Assumption: no interaction between features}
 	\item What is the $R^2$ value and how is it defined?
-	\asw{\newline $R^2 = 1 - \frac{SSE}{SST} = 1 - \frac{\sum_{i} (y_i - \hat{y}_i)^2}{\sum_i (y_i - \overline{y}_i)^2}$}
+	\asw{\newline $R^2$ expresses how well the model explains the data
+		\newline Definition: $R^2 = 1 - \frac{SSE}{SST} = 1 - \frac{\sum_{i} (y_i - \hat{y}_i)^2}{\sum_i (y_i - \overline{y}_i)^2}$}
 	\item E: How can the thresholds for the $R^2$ metric for a regression model be interpreted?
-	\asw{\newline }
+	\asw{\newline $R^2 \rightarrow 1$: model fits data very well
+		\newline $R^2 \rightarrow 0$: model does not fit data at all
+		\newline $R^2 < 0$: model learned opposite (worse than data mean)}
 	\item How can the t-statistic be used for interpretation of a NN?
-	\asw{\newline }
+	\asw{\newline It can be used for each feature to interpret its performance.}
 	\item What are the assumptions regarding a NN interpretation for Linear Regression?
-	\asw{\newline Linearity (prediction linear in features), Normality (data is normally distributed), Homoscedasticity (error of prediction has const. variance), Independence (of datapoints), Fixed Features (no measurment error in features), Absence of multicollinearity}
+	\asw{\newline Linearity (prediction linear in features),
+		\newline Normality (data is normally distributed),
+		\newline Homoscedasticity (error of prediction has const. variance),
+		\newline Independence (of datapoints),
+		\newline Fixed Features (no measurment error in features),
+		\newline Absence of multicollinearity}
 	\item What are types of Regularization?
-	\asw{\newline Ridge Regression, LASSO Regression}
+	\asw{\newline Ridge Regression: $\hat{\beta} = argmin_\beta[||y - X\beta||^2_2 + \lambda ||\beta||^2_2]$ (L2-norm)
+		\newline $\rightarrow$ having many features $\rightarrow$ higher chance for strong correlation
+		\newline LASSO Regression: $\hat{\beta} = argmin_\beta[||y - X\beta||^2_2 + \lambda ||\beta||_1]$ (L1-norm)
+		\newline $\rightarrow$ \underline{L}east \underline{A}bsolute \underline{S}hrinkage and \underline{S}election \underline{O}perator, encourages sparsity in features}
 	\item Why do we need Regularization?
-	\asw{\newline }
-	\item What are the main advantages/ diadvantages of Linear Regression?
-	\asw{\newline }
-	\item E: Given a logistic regression model with trained weights $\beta$, how does the output $y$ change, if we change a single input feature $x'_m$ by one unit, i.e., $x'_m = x_m + 1$?
-	\asw{\newline $y' = $}
+	\asw{\newline It is needed to make sure that only the most important features are used to determine the results.
+		\newline \qst{What else?}}
+	\item What are advantages/ diadvantages of Linear Regression?
+	\asw{\newline \textcolor{green}{$+$} Easy to understand
+		\newline \textcolor{green}{$+$} Widely applied / well understood
+		\newline \textcolor{green}{$+$} Easy to assess individual feature contribution
+		\newline \textcolor{green}{$+$} Guaranteed to find optimal solution (w.r.t. given data)
+		\newline \textcolor{red}{$-$} Can only model linear relationships between features \& output
+		\newline \textcolor{red}{$-$} Limited predictive performance
+		\newline \textcolor{red}{$-$} Weights can be unintuitive}
+	\newline
+	\hrule 
 	
 	\item What are \textbf{\underline{Generalized Linear Models}}?
-	\asw{\newline }
+	\asw{\newline They constist of a linear predictor $\eta = x^T \beta$, a distribution (models expectation $\mu = \mathbb{E}[y]$ and a link function $g(\mu) = \eta$, $g^{-1}(\eta) = \mu$)}
 	\item Which assumption is not valid for GLMs, but for Linear Regression?
 	\asw{\newline Normality}
-	\item What is the Link function with GLMs?
-	\asw{\newline }
+	\item What is the link function with GLMs?
+	\asw{\newline \qst{link function?}}
 	\item What are advantages/ disadvantages of GLMs?
-	\asw{\newline }
+	\asw{\newline \textcolor{green}{$+$} No longer restricted to normality assumption
+		\newline \textcolor{green}{$+$} Can train models on non-linear data (although limited) while maintaining linear relationship between data \& weights
+		\newline \textcolor{red}{$-$} Link function complicates interpretability of weights \& features
+		\newline \textcolor{red}{$-$} Still restricted to linear relationships between data \& weights}
+	\newline
+	\hrule 
 	
 	\item What is \textbf{\underline{Logistic Regression}}?
-	\asw{\newline }
+	\asw{\newline It uses a linear model for classification}
 	\item What is the difference between Logistic and Linear Regression?
-	\asw{\newline }
+	\asw{\newline Linear Regression predicts a continuous value Logistic Regression is used for classification. Logistic Regression uses a sigmoid or softmax function at the end.}
 	\item What task does Logistic Regression solve?
-	\asw{\newline }Classification (not Regression)
+	\asw{\newline Classification (not Regression)}
 	\item Why can't we regress directly on data? What is added to solve this issue?
-	\asw{\newline }
+	\asw{\newline When regressing directly on the data the decision boundary is changed a lot, when new points are added. Therefore the sigmoid function is added at the end.}
 	\item What are advantages/ disadvantages of Logistic Regression?
-	\asw{\newline }
+	\asw{\newline \textcolor{green}{$+$} Widely applied, well understood
+		\newline \textcolor{green}{$+$} Weights are somewhat interpretable
+		\newline \textcolor{green}{$+$} Provides probabilities for classification
+		\newline \textcolor{red}{$-$} No automatic feature interaction
+		\newline \textcolor{red}{$-$} Complete separation if one feature perfectly separates the classes $\rightarrow$ it would theoretically get infinite weight
+		\newline \tab $\rightarrow$ makes fitting of model impossible, paradox: a single great feature makes model unusable}
 	\item What is the Perceptron?
-	\asw{\newline }
+	\asw{\newline Perceptron is a simple calculation-unit that applies logistic regression.}
 	\item What is the formula to calculate the Perceptron?
-	\asw{\newline }
+	\asw{\newline $\mu = \frac{1}{1+ exp(-x^T \beta)}$, $y = a(x^T \beta)$}
 	\item Why do we need an activation function?
-	\asw{\newline }
+	\asw{\newline The activation function makes it possible to work with non-linear data. Also it can output probabilities for classification.}
 	\item What kinds of activation functions exist?
-	\asw{\newline }
+	\asw{\newline Sigmoid: $a(z) = \frac{1}{1+ exp(-z)}$, ReLU: $a(z) = max(0,z)$
+		\newline classical perceptrons $\rightarrow$ heavyside step function: $a(z) = 0_{[z\geq0]}, 1_{[z<0]}$}
+	\item E: Given a logistic regression model with trained weights $\beta$, how does the output $y$ change, if we change a single input feature $x'_m$ by one unit, i.e., $x'_m = x_m + 1$?
+	\asw{\newline $y' = $
+		\newline \qst{A change of $x_m$ by 1 unit changes the ratio by a factor of $exp(\beta_m)$}}
+	\newline
+	\hrule 
 	
 	\item What are \textbf{\underline{Generalized Additive Models}}?
-	\asw{\newline }
+	\asw{\newline They consist of smooth functions per feature that are summed up and build the link function.}
 	\item What is the difference between GLMs and GAMs?
-	\asw{\newline }
-	\item How is the link function for GAMs defined? Does the link function need to be a smooth function?
-	\asw{\newline }
+	\asw{\newline The simple weight coefficients of GLMs are replaced with functions for each features in GAMs.}
+	\item How is the link function for GAMs defined? \qst{Does the link function need to be a smooth function?}
+	\asw{\newline The link function has to be a smooth function, but does not have to be specified precisely.}
 	\item Does the link function have to be specified precisely?
-	\asw{\newline }
+	\asw{\newline It does not have to be specified precisely.}
 	\item What happens if prediction is conditioned on only one single feature $x_k$?
-	\asw{\newline }
+	\asw{\newline In this case the conditioned feature is fixed and the expectation is only calculated on all other features.}
 	\item What is Backfitting?
-	\asw{\newline }
+	\asw{\newline Backfitting always calculates $y$ with the feature functions as they are and then adjusts one the feature functions one after each other until it converges and the feature functions don't change anymore.}
 	\item Can the Least Squares method still be used with GAMs?
-	\asw{\newline }
+	\asw{\newline Yes, the Least Squares method can still be used with GAMs.}
 	\item E: What are the advantages/ disadvantages of GAMs?
-	\asw{\newline }
+	\asw{\newline \textcolor{green}{$+$} Model complex relationships between features \& prediction
+		\newline \textcolor{green}{$+$} Smooth functions allow non-linear, non-monotonic \& interactive effects to be captured
+		\newline \textcolor{green}{$+$} Provide valuable insights into direction \& significance of feature effects, even in non-linear relationships
+		\newline \textcolor{red}{$-$} Interpretation of results can be challenging due to complexity of smooth functions
+		\newline \textcolor{red}{$-$} Selecting suitable smooth functions can be challenging}
 	
 	\end{itemize}
 
