@@ -61,6 +61,7 @@
 		\item E: How does model complexity influence interpretability?
 		\asw{\newline With growing model complexity the interpretability of models decreases. This often is due to the many factors that are included in models with higher complexity.}
 	\end{itemize}
+	\newpage
 
 	\section{Intrinsic Interpretability}
 	
@@ -102,8 +103,7 @@
 		\newline LASSO Regression: $\hat{\beta} = argmin_\beta[||y - X\beta||^2_2 + \lambda ||\beta||_1]$ (L1-norm)
 		\newline $\rightarrow$ \underline{L}east \underline{A}bsolute \underline{S}hrinkage and \underline{S}election \underline{O}perator, encourages sparsity in features}
 	\item Why do we need Regularization?
-	\asw{\newline It is needed to make sure that only the most important features are used to determine the results.
-		\newline \qst{What else?}}
+	\asw{\newline It is needed to make sure that only the most important features are used to determine the results. It helps keeping the weights as small as possible. It reduces the complexity of the model, so that it only generally fits the data and not overfits to the data.}
 	\item What are advantages/ diadvantages of Linear Regression?
 	\asw{\newline \textcolor{green}{$+$} Easy to understand
 		\newline \textcolor{green}{$+$} Widely applied / well understood
@@ -120,7 +120,7 @@
 	\item Which assumption is not valid for GLMs, but for Linear Regression?
 	\asw{\newline Normality}
 	\item What is the link function with GLMs?
-	\asw{\newline \qst{link function?}}
+	\asw{\newline Invertable function out of exponential family. \qst{link function?}}
 	\item What are advantages/ disadvantages of GLMs?
 	\asw{\newline \textcolor{green}{$+$} No longer restricted to normality assumption
 		\newline \textcolor{green}{$+$} Can train models on non-linear data (although limited) while maintaining linear relationship between data \& weights
@@ -154,8 +154,8 @@
 	\asw{\newline Sigmoid: $a(z) = \frac{1}{1+ exp(-z)}$, ReLU: $a(z) = max(0,z)$
 		\newline classical perceptrons $\rightarrow$ heavyside step function: $a(z) = 0_{[z\geq0]}, 1_{[z<0]}$}
 	\item E: Given a logistic regression model with trained weights $\beta$, how does the output $y$ change, if we change a single input feature $x'_m$ by one unit, i.e., $x'_m = x_m + 1$?
-	\asw{\newline $y' = $
-		\newline \qst{A change of $x_m$ by 1 unit changes the ratio by a factor of $exp(\beta_m)$}}
+	\asw{\newline $y' = y \times exp(\beta_m)$
+		\newline A change of $x_m$ by 1 unit changes the ratio by a factor of $exp(\beta_m)$}
 	\newline
 	\hrule 
 	
@@ -181,85 +181,112 @@
 		\newline \textcolor{red}{$-$} Selecting suitable smooth functions can be challenging}
 	
 	\end{itemize}
+	\newpage
 
 	\section{Model Types}
 	
 	\begin{itemize}
 		\item What different model types exist?
-		\asw{\newline }
+		\asw{\newline Decision Trees (Random Forest), Neural Network, GNN, CNN, Transformer, CLIP, Diffusion Models}
 		
 		\item What are \textbf{\underline{Decision Trees}}?
-		\asw{\newline }
+		\asw{\newline They define boundaries for features that decide between different subtrees.}
 		\item How do Decision Trees learn?
-		\asw{\newline }
+		\asw{\newline They always pick the currently "best" boundary and continue their search in the subtrees of this boundary.}
 		\item How is the "best" boundary for Decision Trees chosen?
-		\asw{\newline }
-		\item How can the purity of nodes be mesasured?
-		\asw{\newline }
+		\asw{\newline It is chosen by the following algorithm:
+			\newline 1) sort all feature values
+			\newline 2) candidate threshold: build avg between 2 subsequent values
+			\newline 3) each pair (feature \& candidate threshold) is potential boundary}
+		\item How can the purity of nodes be mesasured? \qst{Formulas?}
+		\asw{\newline Information Gain (higher $\widehat{=}$ better)
+			\newline Gini Index (lower $\widehat{=}$ better)
+			\newline MSE (for regression tasks)
+			\newline $\rightarrow$ Learning smallest optimal decision tree is a NP-complete problem.}
 		\item E: What are possible stopping criteria for Decision Trees?
-		\asw{\newline e.g. max. depth, max instances per nodes}
+		\asw{\newline e.g. max. depth, max instances per nodes, purity}
 		\item What is an alternative for stopping conditions?
-		\asw{\newline Pruning}
+		\asw{\newline Pruning: completely build up your tree and then aggregate subtrees if they are not necessary.}
 		\item What is Random Forest?
-		\asw{\newline }
+		\asw{\newline It is an a way to combine many decision trees to build one decision.}
 		\item What are the two methods used in Random Forest models?
-		\asw{\newline Bagging, Boosting}
+		\asw{\newline Bagging: learn different trees on subsets of training data (sampling with replacement)
+			\newline Boosting: learn different trees on reweighted versions of training data}
 		\item How can the feature importance for Random Forest be calculated?
-		\asw{\newline }
+		\asw{\newline The contribution of each feature can be measured by dividing it by the measure for all features.}
 		\item How can interaction of feature be represented by Random Forest models?
-		\asw{\newline }
+		\asw{\newline Representing feature interaction is only limited possible and no complex depencies can be represented.}
 		\item What are the advantages/ disadvantages of Decision Trees?
-		\asw{\newline }
+		\asw{\newline \textcolor{green}{$+$} Somewhat captures interactions
+			\newline \textcolor{green}{$+$} Data often grouped in understandable criteria
+			\newline \textcolor{green}{$+$} Trees create "good" explanations
+			\newline \textcolor{red}{$-$} Linear relationship only approximated
+			\newline \textcolor{red}{$-$} Lack of smoothness: small feature change can cause significant change in prediction
+			\newline \textcolor{red}{$-$} Unstable: changes in data easily yield very different trees
+			\newline \textcolor{red}{$-$} Size/depth essential to interpretation}
 		\item What is the difference between Random Forest and Decision Trees?
-		\asw{\newline }
+		\asw{\newline Random Forest combines many Decision Trees for one decision.}
 		\item What is meant by feature interaction?
-		\asw{\newline }
+		\asw{\newline It describes that a decision depends on a combination of features.}
 		\item E: How can feature importance be computed for a decision tree?
-		\asw{\newline }
+		\asw{\newline feature importance can be computed by how often and with which impact a feature helps with the decision. Features that split earlier have in general more impact than later ones.}
+		\newline
+		\hrule 
 		
 		\item What are the downsides of the algorithms before NNs?
 		\asw{\newline Expressiveness / Representation Power, scalability to higher dimensions, manual feature selection}
 		\item What are the disadvantages of NNs?
 		\asw{\newline No intrinsic interpretability anymore}
+		\newline
+		\hrule 
 		
 		\item What are \textbf{\underline{GNNs}}?
-		\asw{\newline }
+		\asw{\newline They are NNs that work on Graph structured data. Graph structured data consists of nodes and edges.}
 		\item For which application are GNNs suitable?
 		\asw{\newline e.g. molecules, (social) networks, NLP, images}
 		\item E: Name two examples for graph like structures and epxlain what the nodes and edges represent.
-		\asw{\newline }
+		\asw{\newline 1) Molecules are graph like structures. Their nodes represent the atoms and the edges represent the connections between them.
+			\newline 2) Networks can have nodes as people and edges represent the people who know each other.}
 		\item What are graph-related problems?
 		\asw{\newline Node classification, graph classification, link prediction, community detection, anomaly detection}
 		\item What are the advantages of graph data?
 		\asw{\newline permutation invariant}
 		\item What is Message Passing (MP)?
-		\asw{\newline }
+		\asw{\newline Message Passing describes the process of passing messages along edges from one node to another. Every nodes sends a message (its embedding) to all other neighbors.}
 		\item What are the steps for MP?
-		\asw{\newline }
+		\asw{\newline 1) Node gathers messages (embeddings) from neighbors and its own.
+			\newline 2) Aggregate messages using permutation invariant function (e.g. sum)
+			\newline 3) Result is passed through learnable function (e.g. MLP)}
 		\item E: For message passing, what kind of property is required for the learned aggregation function?
-		\asw{\newline }
+		\asw{\newline It has to be permutation invariant.}
 		\item What are methods for GNNs?
 		\asw{\newline Graph Convolutional Network, Graph Attention Networks, Gated Graph Sequence Networks}
+		\newline
+		\hrule 
 		
 		\item What are \textbf{\underline{CNNs}}?
-		\asw{\newline }
+		\asw{\newline A type of NN that can work with images as input.}
 		\item What are the hyperparameters relevant to CNNs?
-		\asw{\newline }
+		\asw{\newline number of filters, kernel (filter) size, stride, padding}
 		\item What is Pooling? Why are we need Pooling?
-		\asw{\newline }
+		\asw{\newline Pooling reduces the size of layers, it is used to capture spatial information. There are different types of Pooling like Average or Max Pooling.}
 		\item How many parameters do Pooling layers have?
-		\asw{\newline }
+		\asw{\newline Pooling does not have any learned parameters. It needs 2 hyperparameters, kernel size and stride.}
 		\item How many parameters do Convolution layers have?
-		\asw{\newline }
-		\item In addition to Convolutional Layers, which two parts make up a typical convolution stage in a CNN? Name them and describe their function.
-		\asw{\newline }
+		\asw{\newline Convolutional layers have $K \times K \times D_1 \times F$ parameters.}
+		\item E: In addition to Convolutional Layers, which two parts make up a typical convolution stage in a CNN? Name them and describe their function.
+		\asw{\newline Convolutional Stage = Convolutional layers + Activation Function (ReLU) + Pooling}
 		\item What parts are needed for the convolution stage?
 		\asw{\newline convolution, ReLU, Pooling}
 		\item What are possible application areas of CNNs?
 		\asw{\newline image classification, object detection, image segmentation (deconvolutions)}
+		\item What are typical architectures of CNNs?
+		\asw{\newline e.g. ResNet, InceptionNet, HRNet}
+		\newline
+		\hrule 
 		
 		\item What are \textbf{\underline{Transformer}} Networks?
-		\asw{\newline }
+		\asw{\newline Transformer work with any input (mostly text, often also images) to create an output. Transformer are mostly based on the Attention mechanism. The order of the input sequence is encoded into an positional encoding.}
 		\item What are possible application areas of Transformer network?
 		\asw{\newline Computer Vision, NLP, Speech, Translation, Robotics, Image Classfication, Multimodal Generation, Text Generation}
 		\item What was used before the introduction of Transformer for the input of sequences?
@@ -267,70 +294,81 @@
 		\item What are problems with the use of RNNs for sequential inputs?
 		\asw{\newline sequential processing, localization, single direction context}
 		\item What is Attention?
-		\asw{\newline }
+		\asw{\newline It describes at what a network is currently looking at while computing a specific output. It sets the words in relation to each other and can describe what is currently important.}
 		\item What is the intuition behind Transformers?
-		\asw{\newline Query, Key, Value}
+		\asw{\newline Query (like a search term, token),
+			\newline Key (short result summary/identification),
+			\newline Value (content of results)
+			\newline each token searches the database for relevant token and updates its representation based on most relevant token}
 		\item How is the Attention computed?
 		\asw{\newline 1) compute attention score, normalize, softmax
 		\newline 2) sum attention score weighted by values
 		\newline $\rightarrow$ $z = softmax(\frac{Q \times K'}{\sqrt{d_{key}}}) \times V$}
 		\item What part of the Tranformer architecture is used for what?
-		\asw{\newline only decoder $\rightarrow$
-		\newline only encoder $\rightarrow$
-		\newline both $\rightarrow$}
-		\item How is the input of the Transformer handled beforehand?
+		\asw{\newline only encoder $\rightarrow$ e.g. BERT (predict masked word)
+		\newline only decoder $\rightarrow$ e.g. GPT (predict next word)
+		\newline both $\rightarrow$ e.g. TS (translation)}
+		\item How is the input of the Transformer preprocessed?
 		\asw{\newline tokenization of inputs, positional encoding (permutation invariance, sequence processing)}
 		\item How does the positional encoding of the Transformer input work?
-		\asw{\newline }
+		\asw{\newline The positional encoding leads to permutation invariance (attention) and helps with the sequence processing. The idea is to add intelligently specific values on the embedded inputs, those could be the values of the sinus function.}
 		\item How does the tokenization of the Transformer input work?
-		\asw{\newline }
+		\asw{\newline Depending on the input modality simple linear layers or specialized pre-trained embeddings (NLP) are used. It takes the word as input and converts it into a number or vector.}
 		\item What types of modalities can be input to an Transformer model?
-		\asw{\newline }
+		\asw{\newline Images, Text, etc.}
 		\item What is the MHSA?
 		\asw{\newline Multi-headed Self-Attention: Conceptualized Embeddings, Self-Attention, Multiple Attention Heads, Weighting with Linear Layers}
 		\item What is the Tokenwise-MLP?
-		\asw{\newline }
+		\asw{\newline Every latent token updated individually using MLP: $z_i = w_z GeLU(W_1 x + b_1) + b_2$. Stores the "world knowledge".}
 		\item What are Residual Updates and why do we need them?
-		\asw{\newline }
+		\asw{\newline The MLP computes a residual value that is added to the initial input. This stabilizes the training and allows for deeper NNs. (ResNet-block)}
 		\item What is Layer Normalization and why do we need it?
-		\asw{\newline }
+		\asw{\newline It is similar to Batch normalization. It normalizes the distribution of an intermediate layer. It is often applied before attention and linear layers. It helps to stabilize the training.}
 		\item How many of the layers are stacked on top of each other in the Transformer network?
-		\asw{\newline commonly 6 or 12}
+		\asw{\newline Commonly there are 6 or 12. More layers enable better abstractions.}
 		\item How is the output layer of the Transformer network defined?
-		\asw{\newline }
+		\asw{\newline It depends on the application and is therefore flexible. Commonly it's a linear layer head with an arbirtrary activation function. Often not all output tokens have to be used.}
 		\item Do the inputs for the Transformer network need padding? Is the input length for the Transformer network fixed?
-		\asw{\newline }
+		\asw{\newline The input has padded to a fixed input length with the vanilla Transformer.}
 		\item What different types of Attention are used in the Transformer network and how do they work? In which part of the network are they used?
-		\asw{\newline Self-Attention, Cross-Attention, Masked-Attention}
+		\asw{\newline Self-Attention (encoding): K, V from same input sequence
+			\newline Cross-Attention (decoding): K, V from different sequence than Q
+			\newline Masked-Attention (decoding): only lookback possible for token (rest masked)}
 		\item What properties do Transformer networks have?
 		\asw{\newline expressive, optimizable, efficient}
 		\item E: Name two weakness of Recurrent Neural Networks (RNNs), which are addressed by the Transformer Architecture.
-		\asw{\newline }
-		\item E: What three matrices are required for computing attention? On a high level, what is their purpose?
-		\asw{\newline }
-		\item What is special about the latent space learned by the CLIP foundation model?
-		\asw{\newline }
+		\asw{\newline sequential processing, localization: hidden token mostly influenced by most recent token}
+		\item E: What 3 matrices are required for computing attention? On a high level, what is their purpose?
+		\asw{\newline Query, Key and Value weight matrices are needed. Query is supposed to work like a search term to find relevant tokens. Key helps to identify the tokens that are relevant. Value describes the content of an token.}
+		\newline
+		\hrule 
 		
 		\item What is \textbf{\underline{CLIP}}?
 		\asw{\newline Contrastive Language-Image Pre-Training}
 		\item What is CLIP used for?
-		\asw{\newline pretraining image and text encoders}
+		\asw{\newline Pretraining of image and text encoders}
 		\item What types of data does CLIP receive?
-		\asw{\newline }
+		\asw{\newline The input are images and text.}
 		\item What are the parts of a CLIP network? What types of networks are often used for them?
-		\asw{\newline }
+		\asw{\newline text-encoder: Transformer, vision-encoder: ResNet or ViT (Vision Transformer)}
 		\item How can the different modalities be mapped to check for similarities?
-		\asw{\newline }
+		\asw{\newline Both modality encodings are mapped to a shared latent space. There they can be checked for similarity.}
 		\item What is the distance in the latent space equal to?
-		\asw{\newline }
+		\asw{\newline It equals cosine-similarity.}
 		\item What is Self-Supervised Training?
-		\asw{\newline }
+		\asw{\newline It uses the data as input and tries to predict another part of the same data. This could be the next word in a sentence for example.}
 		\item What are the steps for Self-Supervised Training in CLIP?
-		\asw{\newline }
+		\asw{\newline 1) encode image-text-pairs in the shared latent space
+			\newline 2) compute cosine-similarity for all pairs of a batch
+			\newline 3) compute contrastive loss function (similar close, dissimilar far apart in latent space)}
 		\item What are possible applications of CLIP?
-		\asw{\newline }
+		\asw{\newline Robotics: open-vocabulary object detection, plan actions in environment and solve tasks}
 		\item How can CLIP models be explained?
-		\asw{\newline }
+		\asw{\newline They can have an inner monologue (embodied reasoning). The latent space can be interpreted for explanations.}
+		\item E: What is special about the latent space learned by the CLIP foundation model?
+		\asw{\newline The latent space is shared between different modalities and encode similar inputs close to each other.}
+		\newline
+		\hrule 
 		
 		\item E: What is a \textbf{\underline{Diffusion}} networks?
 		\asw{\newline }
@@ -338,49 +376,196 @@
 		\asw{\newline }
 		
 	\end{itemize}
+	\newpage
 
 	\section{Post-hoc Interpretability}
 	
 	\begin{itemize}
+	\item What types of Post-hoc interpretability methods exist?
+	\asw{\newline Model-agnostic vs. model-specific}
+	\item Why do we need two types of Post-hoc interpretability methods?
+	\asw{\newline Model-agnostic methods can cope with many different models and create explanations for them. Model-specific methods can provide explanations only for specific types of models, but therefore the explanations are more detailed and sometimes easier to interpret.}
+	\item What are global methods?
+	\asw{\newline They describe the average behavior of ML models.}
+	\item What are examples of global methods?
+	\asw{\newline Partial dependence plots, Accumulated local effect plots, Feature interaction (H-statistic), Functional decomposition
+		\newline Permutation feature importance: measures the importance of a feature as an increase in loss when the feature is permuted
+		\newline Global surrogate models: replaces the complex model with a simpler interpretable model
+		\newline Prototypes: are representative data points of a distribution and can be used to enhance interpretability}
+	\item What are local methods?
+	\asw{\newline They describe individual predictions.}
+	\item What are examples of local methods?
+	\asw{\newline Individual conditional expectation curves, Scoped rules (anchors)
+		\newline Local surrogate models (LIME): replace the complex model with a locally interpretable surrogate
+		model
+		\newline Counterfactual explanations: examine which features would need to be changed to achieve a desired prediction. (We might learn about this approach on Thursday)
+		\newline Shapley values: fairly attribute the prediction to individual features.
+		\newline $\rightarrow$ SHAP: is a computation method for Shapley values, that also offers global interpretation
+		methods based on combinations of Shapley values across the data.}
+	\item What is the difference between global and local methods?
+	\asw{\newline While local methods concentrate on explaining specific predictions, global methods explain the overall behavior of the model.}
 	\item E: Name one local and one global interpretation method and explain what makes the local/global.
-	\asw{\newline }
+	\asw{\newline \qst{To answer}}
+	\newline
+	\hrule 
 	
-	\item Please explain \textbf{\underline{Permutation Features importance}}.
+	\item Please explain \textbf{\underline{Permutation Features Importance}}.
+	\asw{\newline This methods performs a permutation of a feature and measures the importance of this feature depending on the increase in the error. If the error increases by a lot, the feature is important, otherwise it's irrelevant.}
+	\item How to compute FI (feature importance)?
+	\asw{\newline Can be computed as quotient or difference: $FI_m = \frac{L(y, \hat{f}(X^{(m)}_{perm}))}{L(y, \hat{f}(X))}$, $FI_m = L(y, \hat{f}(X^{(m)}_{perm})) - L(y, \hat{f}(X))$}
+	\item Is Permutation Feature Importance a  local or global method?
+	\asw{\newline Global.}
+	\item Should FI be computed on the training or test set and which purpose does it have respectively?
 	\asw{\newline }
-	\item Please explain LIME.
-	\asw{\newline }
-	\item E: What are advantages and disadvantages of LIME.
-	\asw{\newline }
+	\item What are advantages / disadvantages of Permuation Feature Importance?
+	\asw{\newline \textcolor{green}{$+$} Nice interpretation: FI is the increase in model error when feature's info is removed
+		\newline \textcolor{green}{$+$} Highly compressed, global insight into model's behavior
+		\newline \textcolor{green}{$+$} Very simple
+		\newline \textcolor{red}{$-$} Requires ground truth
+		\newline \textcolor{red}{$-$} Results might vary greatly depending on permutation
+		\newline \textcolor{red}{$-$} Can be biased by unrealistic data instances}
+	\newline
+	\hrule 
+	
 	\item Please explain Gloabl Surrogate.
-	\asw{\newline }
+	\asw{\newline An interpretable model tries to imitate predictions of a blackbox model.}
 	\item E: Briefly explain how to create a Global Surrogate.
-	\asw{\newline }
+	\asw{\newline Select a dataset and get predicitions from complex model. Pick an interpretable surrogate model and fit the interpretable model to the selected dataset and predictions of the complex model.}
+	\item How is the quality of the surrogate model measured?
+	\asw{\newline It is measured how good the surrogate model replicatees the predictions of the complex blackbox model. This is measured using the $R^2$ metric.}
+	\item What are advantages / disadvantages of Global Surrogate?
+	\asw{\newline \textcolor{green}{$+$} Very flexible, any interpretable model can be used
+		\newline \textcolor{green}{$+$} Very intuitive
+		\newline \textcolor{green}{$+$} $R^2$: How good is approximation?
+		\newline \textcolor{red}{$-$} Surrogate never sees ground truth $\rightarrow$ learn something about model or data
+		\newline \textcolor{red}{$-$} Inherits disadvantages of surrogate}
+	\newline
+	\hrule 
+	
+	\item Please explain LIME.
+	\asw{\newline LIME is short for Local Interpretable Model-agnostic Explanations. It trains a local surrogate model to explain individual predictions.}
+	\item Is LIME a local or global method?
+	\asw{\newline LIME is a local method.}
+	\item What is the formula for LIME?
+	\asw{\newline $\psi(x) = armin_{g \in G} L(\hat{f}, g, \Xi_x) + \Omega(g)$}
+	\item What is the algorithm for LIME?
+	\asw{\newline 1) Select a prediction we want explained.
+		\newline 2) Perturb input and get new predictions from complex model.
+		\newline 3) Weight new samples (proximity).
+		\newline 4) Train interpretable model on dataset with variations (local).
+		\newline 5) Explain prediction by interpreting surrogate model.}
+	\item E: What are advantages and disadvantages of LIME.
+	\asw{\newline \textcolor{green}{$+$} Explanations short (selective) \& possibly contrastive
+		\newline \textcolor{green}{$+$} Works for tabular data, text \& images
+		\newline \textcolor{green}{$+$} Can use other features than original model was trained on
+		\newline \textcolor{red}{$-$} Complexity of explanation model has to be pre-defined
+		\newline \textcolor{red}{$-$} Instability of explanations
+	}
+	\newline
+	\hrule 
 	
 	\item Please explain \textbf{\underline{Shapley Values}}.
-	\asw{\newline }
+	\asw{\newline They describe how good features of an instance would have performed without a particular feature.}
 	\item E: Briefly explain, what interpretation do Shapley Values provide. What ”question” do they answer?
-	\asw{\newline }
-	\item Please explain SHAP.
-	\asw{\newline }
+	\asw{\newline Question: "How would the other features of this particular instance have performed without that particular feature?"}
+	\item What properties do Shapley Values satisfy?
+	\asw{\newline Efficiency: contributions add up to difference of prediction and average prediction
+		\newline Symmetry: contribution of 2 features same, if both contribute equally to all possible coalations
+		\newline Dummy: value$=0$ $\rightarrow$ feature does not change prediction
+		\newline Additivity: additively combined models $\rightarrow$ individual values additively combined}
+	\item What is the formula of Shapley Values?
+	\asw{\newline $\varphi_m = \frac{1}{M} \sum_{C_{/m}} \frac{\phi_m(C_{/m})}{\#|C_{/m}|}$
+		\newline with marginal contribution of $m$ to $C_{/m}$: $\phi_m(C_{/m}) = \hat{f}(C_{/m} \cup m) - \hat{f}(C_{/m})$}
+	\item How can the Shapley Value be calculated?
+	\asw{\newline It can be approximated with the Monte-Carlo approach. The instance of interest $x$ is replaced with some features of another, random instance $z$. Feature m gets either replaced ($x_{-m}$) or not ($x_{+m}$)}.
+	\item What are advantages / disadvantages of Shapley Values?
+	\asw{\newline \textcolor{green}{$+$} fairly distributes differences between prediction \& avg prediction among feature values (LIME does not)
+		\newline \textcolor{green}{$+$} allows contrastive explanations, comparison does not have to be avg prediction, can be subset, including single datapoint
+		\newline \textcolor{green}{$+$} offers solid theory: efficiency, symmetry, dummy, additivity
+		\newline \textcolor{red}{$-$} requires a lot of compute
+		\newline \textcolor{red}{$-$} potentially misinterpreted, Shapley values do NOT measure change in prediction if feature was removed from training
+		\newline \textcolor{red}{$-$} always uses all features, no sparse explanation
+		\newline \textcolor{red}{$-$} inclusion of unrealistic instances (in training) $\rightarrow$ Frankenstein Samples}
+	
+	\item Please explain \textbf{SHAP}.
+	\asw{\newline It is a combination of LIME and Shapley Values in an additive model.}
+	\item Is SHAP a local or global method?
+	\asw{\newline It is a local method.}
+	\item What are the desirable properties for additive explanatory models that are required for fairness?
+	\asw{\newline Local accuracy,
+		\newline Missingness,
+		\newline Consistency}
+	\item What is the algorithm for SHAP?
+	\asw{\newline 1) Maintain "background dataset" (representatives)
+		\newline 2) Create "Frankenstein samples": replace features with features from other instances in dataset
+		\newline 3) Evaluate "Frankenstein samples" and average outcome $\rightarrow$ outcome for particular set
+		\newline 4) Repeat for several sets.
+		\newline 5) Fit additive model using created dataset via weighted Linear Regression}
+	\item What are advantages / disadvantages of SHAP?
+	\asw{\newline \textcolor{green}{$+$} solid theoretical foundation
+		\newline \textcolor{green}{$+$} inherits advantages of Shapley Values
+		\newline \textcolor{green}{$+$} connects LIME \& Shapley Values
+		\newline \textcolor{green}{$+$} global model interpretation
+		\newline \textcolor{green}{$+$} fast implementations for specific models (e.g. TreeSHAP)
+		\newline \textcolor{red}{$-$} KernelSHAP is slow
+		\newline \textcolor{red}{$-$} KernelSHAP still ignores feature dependency
+		\newline \textcolor{red}{$-$} inherits disadvantages from Shapley Values}
 	
 	\end{itemize}
+	\newpage
 	
 	\section{Prototype Learning}
 	
 	\begin{itemize}
 	\item What are \textbf{\underline{Prototypes}}?
-	\asw{\newline }
+	\asw{\newline Prototypes are the most predictive representation for a specific prediction result.}
+	\item What can be types of Prototypes?
+	\asw{\newline whole or part of a training sample, merged representation of multiple samples, encoded in feature space}
+	\item How does Bag of Visual Words work?
+	\asw{\newline Keypoint extraction, Cluster creation, Cluster comparison}
+	\item What is a Prototype Layer?
+	\asw{\newline It represents the distance of the encoding vector to Prototypes. Each node $\phi_n$ represents one prototype in Layer $\Phi$.
+		\newline Computation: $z = Enc(x)$, $\Phi_j(z) = ||z - \phi_j||^2_2$}
+	\item How is the Prototype Layer integrated into the Architecture?
+	\asw{\newline The Prototype Layer $z = e(x)$ is located between the Encoding stage and the Decision stage.}
+	\item How is the Prototype Layer trained?
+	\asw{\newline It is optimized via backpropagation.}
+	\item Are the Prototypes visualizable and interpretable?
+	\asw{\newline The Prototypes are visualizable, but there are not interpretable by themselves.}
 	\item What is Prototype Learning?
-	\asw{\newline }
-	\item What kinds of Prototype Learning exist?
-	\asw{\newline }
-	\item What is the definition of a Prototype with respect to interpretable machine learning models, e.g. for computer vision?
-	\asw{\newline }
-	\item How are prototypes related to Bag of (visual) words?
-	\asw{\newline }
-	\item Describe a network architecture for non-learnable Prototypes.
-	\asw{\newline }
+	\asw{\newline It describes the learning process of Prototypes that embody specific types of features.}
+	\item What kinds of Prototypes exist?
+	\asw{\newline Learnable, non-learnable Prototypes.}
+	\item What kind of loss do Autoencoders use?
+	\asw{\newline Reconstruction loss: $\mathcal{L}_{Rec} = \frac{1}{N} \sum_{i}^{N} ||(D \times E)(x_i) - x_i||^2_2$}
+	\item What is the Auxiliary Head used for in Prototype Architectures?
+	\asw{\newline It is an decoder that is not required for the prediction. It supports training by providing a second objective.}
+	\item What types of loss exist in Reconstructable/Learnable Prototype Training?
+	\asw{\newline Task-loss: $\mathcal{L}_{task}$, i.e. $\mathcal{L}_{CE}(y, \hat{y})$
+		\newline Reconstruction-loss: $\mathcal{L}_{Rec} = \frac{1}{N} \sum_{i}^{N}||d(z_i) - x_i||^2_2$
+		\newline R1-loss: $\mathcal{L}_{R1} = \frac{1}{M} \sum_{j=0}^{M} min_{i \in [0,N]} ||\phi_j - z_i||^2_2$
+		\newline R2-loss: $\mathcal{L}_{R2} = \frac{1}{N} \sum_{i=0}^{N} min_{j \in [0,M]} ||z_i - \phi_j||^2_2$}
+	\item Why is it important that Prototypes are diverse? How can diversity be encouraged?
+	\asw{\newline Diverse Prototypes improve model performance and they encode more information together.
+		\newline KL-Divergence, Jeffrey's Divergence}
+	\item What are the downsides of Learnable Prototypes?
+	\asw{\newline They are fixed in number and they do not stand in relation to each other.}
+	\item How do non-learnable prototypes work?
+	\asw{\newline They are not optimized via backpropagation. They are optimized via a separate clustering algorithm w.r.t. their similarities.}
+	\item What are possible similarity measures for non-learnable Prototypes?
+	\asw{\newline Prototype Cosine Similarity, Class Cosine Similarity}
+	\item What kinds of loss exist for non-learnable Prototypes?
+	\asw{\newline Task-loss: increase distance to incorrect class
+		\newline Contrast-loss: increase distance to correct, but non-assigned protoype
+		\newline Distance-loss: decrease distance to assigned prototype}
+	\item E: What is the definition of a Prototype with respect to interpretable machine learning models, e.g. for computer vision?
+	\asw{\newline \qst{What do they want to know?}}
+	\item E: How are prototypes related to Bag of (visual) words?
+	\asw{\newline With non-learnable Prototypes like in Bag of Visual Words clustering can be applied.}
+	\item E: Describe a network architecture for non-learnable Prototypes.
+	\asw{\newline There is an encoding stage then the bottleneck and afterwards the encoding stage. In the bottleneck layer the Prototypes are getting clustered by a separate clustering algorithm.}
 	\end{itemize}
+	\newpage
 	
 	\section{SCG: Scene Graph Generation}
 	
@@ -390,6 +575,7 @@
 	\item What is meant by Pruning Edges?
 	\asw{\newline }
 	\end{itemize}
+	\newpage
 
 	\section{Guest Lectures (Applied XAI)}
 	
@@ -399,12 +585,14 @@
 		\item E: What XAI technique is currently predominantly used for Energy Systems?
 		\asw{\newline }
 		\end{itemize}
+		\hrule 
 	
 		\subsection{XAI in Material Science}
 		
 		\begin{itemize}
 		\item 
 		\end{itemize}
+		\hrule 
 	
 		\subsection{XAI in Computer Security}
 		
@@ -414,6 +602,7 @@
 		\item E: How can we protect a model against explanation aware attacks using trigger patches?
 		\asw{\newline }
 		\end{itemize}
+		\hrule 
 	
 		\subsection{XAI in Mobility}
 		
@@ -422,6 +611,7 @@
 		\item What do the components of the MAB-EX framework do?
 		\item Why do we need explanations also for non-AI components?
 		\end{itemize}
+		\hrule 
 	
 		\subsection{XAI in NLP}
 		
@@ -429,6 +619,7 @@
 		\item E: Briefly Describe the two main steps of Pertubation-based Quality Estimation in NLP.
 		\asw{\newline }
 		\end{itemize}
+	\newpage
 	
 	\section{Neural Network Interpretation}
 	
@@ -440,6 +631,5 @@
 		\item E: Name one advantage and one disadvantage for Saliency Maps.
 		\asw{\newline }
 	\end{itemize}
-	
 	
 \end{document}
