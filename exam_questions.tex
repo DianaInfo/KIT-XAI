@@ -371,9 +371,35 @@
 		\hrule 
 		
 		\item E: What is a \textbf{\underline{Diffusion}} networks?
-		\asw{\newline }
+		\asw{\newline \qst{Add questions and answers about Diffusion models}}
 		\item E: What are the two motivations for the research question of ”Uncovering the hidden language of Diffusion models”?
 		\asw{\newline }
+		\item What are Score-based Diffusion Generative Models?
+		\asw{\newline }
+		\item What are Noise-conditioned Score Networks?
+		\asw{\newline }
+		\item How is the Forward Diffusion SDE defined?
+		\asw{\newline }
+		\item How is the Reverse Generative Diffusion SDE defined?
+		\asw{\newline }
+		\item What are the advantages / disadvantages of Probability flow ODEs?
+		\asw{\newline }
+		\item What are Latent / Stable Diffusion models?
+		\asw{\newline }
+		\item What is meant with the Hidden Language of Diffusion models?
+		\asw{\newline }
+		\item How can the Hidden Language of Diffusion models be extracted?
+		\asw{\newline }
+		\item What are the key takeaways for the Hidden Language of Diffusion models?
+		\asw{\newline Conceptor, Diffusion models, Homograph concepts, Bias detection}
+		\item Why are there potential Privacy issues with Diffusion Generative models?
+		\asw{\newline }
+		\item How is it possible to extract training images from Diffusion models?
+		\asw{\newline }
+		\item What are the keytake aways regarding privacy in Diffusion models?
+		\asw{\newline Memorization Image-Generation Models
+			\newline Privacy concerns in Diffusion Models
+			\newline Balancing Generative Power \& Privacy}
 		
 	\end{itemize}
 	\newpage
@@ -572,8 +598,42 @@
 	\begin{itemize}
 	\item What is a \textbf{\underline{Scene Graph}}?
 	\asw{\newline }
+	\item How to get a Scene graph?
+	\asw{\newline Detect objects and predict their relations.}
 	\item What is meant by Pruning Edges?
+	\asw{\newline It is a more efficient way of creating a scene graph. They create a Sparse graph from a Dense graph.}
+	\item What network architecture is used for Pruning Edges?
+	\asw{\newline Region Proposal Network}
+	\item What are different types of edges between objects? \qst{not really types}
+	\asw{\newline use class distribution of data, non-learnable, pre-processing of data needed}
+	\item What steps are needed to generate a scene graph?
+	\asw{\newline Extract bounding boxes and predict a label per box, predict relations between objects and display as graph.}
+	\item Why are GNNs (Message Passing) not used for Scene Graphs?
+	\asw{\newline limited expressive power, oversmoothing, bottleneck phenomena}
+	\item How can the limitations of Message Passing networks be overcome and GNNs be used for Scene Graph generation?
+	\asw{\newline use a continuous model for graphs (underlying graph) $\rightarrow$ Graph Neural Diffusion (GRAND)}
+	
+	\item What is \textbf{\underline{GRAND}}?
+	\asw{\newline It is short for Graph Neural Diffusion.}
+	\item What is the relation between GNNs and PDEs (Partial Differential Equations)?
 	\asw{\newline }
+	\item What are Spatial Diffusion Equations for Graphs?
+	\asw{\newline $(div(z))_i = \sum_{j=1}^{nodes} w_{ij} z_{ij}$ with $w_{ij} = 1$, if $(i,j) \in E$ $\rightarrow$ sum of all edges assigned to node}
+	\item What are the advantages of modeling GNNs through PDEs?
+	\asw{\newline continuous underlying model for graph problems
+		\newline with spatial operators on graphs, use temporal discretization to train GNNs
+		\newline with spatial operators $\rightarrow$ linear system of ODEs (Ordinary Differential Equations), use established methods to solve ODEs.}
+	\item What is the GRAND model/architecture?
+	\asw{\newline }
+	\item How are the edge and node features defined?
+	\asw{\newline edge: difference between connected nodes, nodes: sum of edge features}
+	\item How can GRAND be used for Scene Graph Generation (SGG)
+	\asw{\newline simple: use GRAND instead of GNNs in already existing procedures,
+		\newline OR: create fully connected graph from bounding box and labels, use GRAND to propagate info between nodes $\rightarrow$ then Pruning to remove unimportant edges and predict object relations
+		\newline usage: create graph from superpixels
+		\newline $\rightarrow$ graph $\rightarrow$ predict pixel classes $\rightarrow$ create graph with labels and all possible relations $\rightarrow$ GRAND for Scene Graph}
+	\item What kind of explainability is used with Scene Graphs?
+	\asw{\newline Goal-driven explainability}
 	\end{itemize}
 	\newpage
 
@@ -624,12 +684,83 @@
 	\section{Neural Network Interpretation}
 	
 	\begin{itemize}
+		\item What is the disadvantage of using model-agnostic post-hoc methods like Global Surrogates, LIME, SHAP, etc.?
+		\asw{\newline Main reason DNNs are so powerful: ability to learn/extract features
+			\newline $\rightarrow$ special method needed to interpret these
+			\newline gradients can be used to generate interpretation more efficiently}
+		
+		\item What is \textbf{\underline{Feature Visualization}}? Why do we need it?
+		\asw{\newline The aim is to visualize general concepts of learned features that triggers a particular set of activations.
+			\newline It helps to understand and interpret the used features. It also helps to understand the model itself in general.
+			\newline The idea of Feature Visualization is to try to find inputs that maximize these feature values.}
+		\item What are approaches to do Feature Visualization?
+		\asw{\newline Find training images that has maximal activation of the feature.
+			\newline $\rightarrow$ problem: which part of image is responsible for high activation?
+			\newline Start from random noise and optimize image stepwise.
+			\newline $\rightarrow$ requires constraint on optimization (small steps), regularization like jittering, rotation, scaling to reduce noise in visualization}
+		\item How can interactions between learned features be visualized?
+		\asw{\newline Through the use of the concept of direction in activation space. Elements of direction vector are continuous valued and can be negative.
+			\newline $h(x) = d^T a_x$ ($d$: direction, $a_x$: activations)
+			\newline $\rightarrow$ possible to interpolate between activations}
+		\item What are the advantages / disadvantages of Feature Visualization?
+		\asw{\newline \textcolor{green}{$+$} unique insight into NNs
+			\newline \textcolor{green}{$+$} communication non-technical
+			\newline \textcolor{green}{$+$} combine with feature attribution methods
+			\newline \textcolor{green}{$+$} not limited to images
+			\newline \textcolor{red}{$-$} often not interpretable
+			\newline \textcolor{red}{$-$} illusion of interpretability
+			\newline \textcolor{red}{$-$} too many units to look at}
+		
+		\item What is \textbf{\underline{Network Dissection}}?
+		\asw{\newline The idea is to find a concept that is closer to human understanding.}
+		\item What types of labels are used for Network Dissection?
+		\asw{\newline Pixel-level labels of general human concepts}
+		\item What is the quality metric for Network Dissection?
+		\asw{\newline An IoU score gets computed and needs to be over a certain threshold ($IoU_{k,c}>0.04$ $\rightarrow$ channel k is detector for concept c)}
 		\item E: Briefly describe the three main steps of Network Dissecton.
-		\asw{\newline }
+		\asw{\newline given: image and trained network
+			\newline 1) Pass image through network
+			\newline 2) Upscale activations to match original image size
+			\newline 3) (Later) compare max activations to ground-truth pixel-wise segmentation}
+		\item What are the advantages / disadvantages of Network Dissection?
+		\asw{\newline \textcolor{green}{$+$} automatically link concepts
+			\newline \textcolor{green}{$+$} detect concepts beyond classes
+			\newline \textcolor{red}{$-$} requires dataset labeled on pixel-level with concepts
+			\newline \textcolor{red}{$-$} only positive activations aligned with human concepts}
+		
+		\item What is \textbf{\underline{Pixel Attribution}}?
+		\asw{\newline It is a type of feature attribution for images.
+			\newline Question: "What part of the image lead the models decision?"}
+		\item How does Pixel Attribution work?
+		\asw{\newline It uses the gradient to determine how big the influence of a specific pixel is on the output.}
+		\item What are \textbf{Saliency Maps}?
+		\asw{\newline They show which pixels of the input images are important for the output of a network.}
+		\item What is Saliency?
+		\asw{\newline Saliency describes the gradient of the output.}
+		\item What kinds of Saliencies are often visualized?
+		\asw{\newline absolute, positive, negative values of Saliency}
 		\item E: Which part of a Convolution Stage in a CNN might cause problems for saliency maps and why?
-		\asw{\newline }
+		\asw{\newline The activation function often causes problems. With the ReLU activation function all of the values lower than 0 are mapped to 0. Therefore the information on where this value came from is lost and can not be backpropagated anymore.
+			\newline A solution for this would be to use the indicator function in the backpropagation.}
 		\item E: Name one advantage and one disadvantage for Saliency Maps.
-		\asw{\newline }
+		\asw{\newline \textcolor{green}{$+$} faster to compute than model-agnostic methods
+			\newline \textcolor{red}{$-$} methods are dependent on human interpretation of pixel importance}
+		\item What is \textbf{GradCAM}?
+		\asw{\newline It is a method that generates explanations for CNN decisions.}
+		\item What is the algorithm for GradCAM?
+		\asw{\newline 1) Pass input image through CNN, only use raw score for class of interest $\rightarrow$ other activations $=0$
+			\newline 2) Backprop gradient to last conv layer before FC layer
+			\newline 3) Weight feature map pixel by gradient for class (globally pooled gradients)
+			\newline 4) Calculate average of feature maps, weighted per pixel by gradient \& apply ReLU to average
+			\newline 5) For visualization: scale values to [0,1], upscale image \& overlay over original image}
+		\item What are advantages / disadvantages for Pixel Attributions?
+		\asw{\newline \textcolor{green}{$+$} explanations are visual, quick to recognize images
+			\newline \textcolor{green}{$+$} faster to compute than model-agnostic methods
+			\newline \textcolor{green}{$+$} many methods to choose from: GradCAM, Guided GradCAM, SmoothGrad
+			\newline \textcolor{red}{$-$} difficult to know whether explanation is correct (qualitative only)
+			\newline \textcolor{red}{$-$} Pixel Attribution methods can be very fragile
+			\newline \textcolor{red}{$-$} methods can be highly unreliable
+			\newline \textcolor{red}{$-$} (potentially) insensitive to model \& data}
 	\end{itemize}
 	
 \end{document}
